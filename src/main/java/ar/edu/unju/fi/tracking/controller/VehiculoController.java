@@ -15,52 +15,88 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.service.IVehiculoService;
-
+/**
+ * Vehiculo Controller, permite controlar las peticiones para el ABM de vehiculo
+ * @author RODOLFO 
+ *
+ */
 @Controller
 @RequestMapping
 public class VehiculoController {
-
+	/**
+	 * Inyeccion
+	 */
 	@Autowired
 	IVehiculoService vehiculoService;
 	@Autowired
 	private Vehiculo vehiculo;
 	
+	/**
+	 * Peticion para preparar el listado de vehiculos existentes
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/vehiculos")
 	public String main(Model model) {
+		//listado de vehiculos en la BD
 		List<Vehiculo> vehiculos = vehiculoService.obtenerVehiculos();
+		//se muestran los vehiculos encontrados
 		model.addAttribute("vehiculos", vehiculos);
 		return "vehiculoListado";
 		
 	} 
-	
+	/**
+	 * Peticion para agregar un nuevo vehiculo
+	 * @param model
+	 * @return al formulario de vehiculo
+	 */
 	@GetMapping("/nuevoVehiculo")
 	public String agregar(Model model) {
 		model.addAttribute("vehiculo", vehiculo);
 		return "vehiculoFormulario";
 	}
-	
+	/**
+	 * Peticion para realizar el alta de un vehiculo
+	 * @param vehiculo
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/saveVehiculo")
 	public String guardar(@Valid Vehiculo vehiculo, Model model) {
+		//se guarda el vehiculo en la BD
 		vehiculoService.guardarVehiculo(vehiculo);
 		return "redirect:/vehiculos";
 		
 	}
-
-	// editar usuario
+	/**
+	 * Peticion para modificar datos de un vehiculo
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	// editar vehiculo
 	@GetMapping("/editarV/{id}")
 	public String editar(@PathVariable Long id, Model model) {
+		//se busca el vehiculo por ID
 		Optional<Vehiculo> vehiculo = vehiculoService.obtenerUnVehiculo(id);
 		//para mostrar el objeto con sus datos
 		model.addAttribute("vehiculo", vehiculo);
 		return "vehiculoFormulario";
 	}
-	
-	// eliminar usuario
+	/**
+	 * Peticion para eliminar un vehiculo
+	 * @param id
+	 * @param model
+	 * @return
+	 */
+	// eliminar vehiculo
 	@GetMapping("/eliminarV/{id}")
 	public String eliminar(@PathVariable Long id, Model model) {
 		vehiculoService.eliminarVehiculo(id);
 		return "redirect:/vehiculos";
 	}
+	
+	
 	
 	//prueba
 	

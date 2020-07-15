@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Registro por Patente</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous" />
+
+</head>
+<!-- CUERPO DE LA VISTA -->
+<body class="body-container-consulta m-0">
+
+	<!-- CLASE CONTENEDORA DE FORMULARIOS, TABLAS, INPUTS, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
+
+	<div
+		class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
+		<!-- CAJA CON CLASE INDICANDO MARGEN SUPERIOR DE 5 -->
+		<div class="card mt-5">
+			<!-- CAJA CON CLASE "CABECERA DE TARJETA"  -->
+			<div class="card-header container p-4">
+				<div class="row m-0">
+					<h2 class="card-title col-sm-12 text-center text-dark m-0">
+						Listado de recorrido por tripulante ordenado por día y hora</h2>
+				</div>
+			</div>
+			<!-- CLASE CON CUERPO DE LA TARJETA, CONTENEDORA DE LA LISTA, FORMS, BOTONES -->
+			<div class="card-body container">
+				<div class="row">
+
+					<div class=" col-sm-12">
+						<div class="container my-4">
+
+
+							<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DEL USUARIO CONSULTOR Y MANDARLAS AL SERVIDOR  -->
+							<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /BuscarTripulanteDNI Y th:object DECLARA EL OBJETO MODELO A USAR -->
+							<form class="row justify-content-center"
+								th:action="@{/BuscarTripulanteDNI}" th:object="${consultTrip}"
+								method="post">
+								<!-- CAMPO DE ENTRADA PARA INGRESAR LA PATENTE, Y ENVIARLO AL OBJETO consultTrip.dni -->
+								<input class="form-control col-sm-4" type="text"
+									th:field="${consultTrip.dni}" required
+									placeholder="Ingrese dni a buscar">
+								<button type="submit" class="btn btn-success col-sm-2 ml-2">BUSCAR</button>
+							</form>
+
+						</div>
+					</div>
+
+					<!-- VALIDACIONES -->
+					<div th:if="${activarNoTripu==true}"
+						class="col-sm-12 text-center h5 font-weight-lighter">
+						<div th:text="${noTripu}" class="alert alert-danger" role="alert"></div>
+					</div>
+
+					<!-- TABLA DE REGISTROS ENCONTRADOS -->
+					<div th:if="${activarTabla==true}"
+						class="col-sm-12 text-center mt-4">
+						<div class="table-responsive">
+							<table class="table table-hover m-auto">
+								<thead class="bg-dark text-white">
+									<tr>
+										<th rowspan="2">ID</th>
+										<th colspan="7">Vehiculo</th>
+										<th rowspan="2">Localidad</th>
+										<th colspan="2">Registro</th>
+									</tr>
+									<tr>
+										<th>N° Patente</th>
+										<th>Tipo</th>
+										<th>N° Chasis</th>
+										<th>N° Motor</th>
+										<th>Modelo</th>
+										<th>Marca</th>
+										<th>Color</th>
+										<th>Fecha-Hora</th>
+										<th>Detalles</th>
+									</tr>
+								</thead>
+								<tbody>
+									<!-- SE UTILIZA th:each PARA RECORRER LA LISTA -->
+									<tr th:each="registro : ${registrosTrip}">
+										<td th:text="${registro.id}"></td>
+										<td th:text="${registro.vehiculo.patente}"></td>
+										<td th:text="${registro.vehiculo.tipo}"></td>
+										<td th:text="${registro.vehiculo.numeroChasis}"></td>
+										<td th:text="${registro.vehiculo.numeroMotor}"></td>
+										<td th:text="${registro.vehiculo.modelo}"></td>
+										<td th:text="${registro.vehiculo.marca}"></td>
+										<td th:text="${registro.vehiculo.color}"></td>
+										<td th:text="${registro.localidad.nombre}"></td>
+										<td th:text="${registro.fechaHora}"></td>
+										<td th:text="${registro.detalleLugarRegistro}"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+
+	<button class="btn btn-primary btn-flotante"
+		th:onclick="'javascript:back();'">
+		<i class="fas fa-reply"></i> &nbsp; Volver
+	</button>
+
+	<script type="text/javascript">
+		function back() {
+			history.back();
+		}
+	</script>
+
+
+	<!-- Footer -->
+	<!-- <div th:insert="layout/footer :: footer"></div> -->
+
+
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+		type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+		type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+	<script type="text/javascript" src="/path/to/jquery.js"></script>
+	<script type="text/javascript" src="/path/to/moment.js"></script>
+	<script type="text/javascript"
+		src="/path/to/tempusdominus-bootstrap-4.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Registros</title>
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+</head>
+
+<!-- CUERPO DE LA VISTA -->
+<body class="container">
+
+	<!--  ENLACE HACIA /registrador -->
+	<form action="/registrador">
+		<input type="submit" class="confondo" value="ATRAS" />
+	</form>
+	<!--  ENLACE HACIA /nuevoRegistro Y CLASS btn PARA BOTON DE TIPO PRIMARIO-->
+	<a th:href="@{/nuevoRegistro}" class="btn btn-primary">Nuevo</a>
+
+	<!-- ESPACIOS -->
+	<br>
+	<br>
+
+	<h1>LISTADO DE REGISTROS</h1>
+	<!-- TABLA RESPONSIVA PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR -->
+	<div class="table-responsive">
+		<table class="table table-striped">
+			<thead>
+				<!-- CAMPOS DE LA TABLA -->
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">Detalle</th>
+					<th scope="col">Fecha y Hora</th>
+					<th scope="col">Localidad</th>
+				</tr>
+			</thead>
+			<tbody>
+				<!-- SE UTILIZA th:each PARA RECORRER LA LISTA -->
+				<tr th:each="registro:${registros}">
+
+					<td th:text="${registro.id}"></td>
+					<td th:text="${registro.detalleLugarRegistro}"></td>
+					<td th:text="${registro.fechaHora}"></td>
+
+
+					<td th:text="${registro.localidad.nombre}"></td>
+
+
+					<td>
+						<!-- REFERENCIAS A RUTAS DE ACCESO PARA LOS CONTROLADORES DE EDITAR Y ELIMINAR -->
+						<a th:href="@{/editarR/}+${registro.id}" class="btn btn-warning">Editar</a>
+						<a th:href="@{/eliminarR/}+${registro.id}" class="btn btn-danger">Eliminar</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</div>
+
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+</body>
+</html>

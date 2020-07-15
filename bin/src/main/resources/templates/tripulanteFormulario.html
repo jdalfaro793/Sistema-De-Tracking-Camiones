@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>Alta de Tripulante</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+
+</head>
+<!-- CUERPO DE LA VISTA -->
+<body class="container">
+	<h1>Alta de Tripulante</h1>
+
+	<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DEL USUARIO Y MANDARLAS AL SERVIDOR  -->
+	<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /saveTripulante Y th:object DECLARA EL OBJETO MODELO A USAR -->
+
+	<form th:action="@{/saveTripulante}" th:object=${tripulante}
+		method="POST">
+		<div class="card">
+			<div class="card-header">
+			</div>
+			<div class="card-body">
+
+				<!-- CAMPO DE ENTRADA ESCONDIDO QUE HACE REFERENCIA AL ID DEL TRIPULANTE -->
+				<input type="hidden" th:field="*{idTripulante}" />
+
+				<!-- DOCUMENTO -->
+				<div class="form-group row">
+					<label for="iddocumento" class="col-sm-2 col-form-label">Documento</label>
+					<div class="col-sm-10">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR documento , Y ENVIARLO AL OBJETO documento -->
+						<input th:field="*{documento}" type="text" class="form-control"
+							id="iddocumento">
+					</div>
+				</div>
+
+				<!-- APELLIDO  -->
+				<div class="form-group row">
+					<label for="idapellido" class="col-sm-2 col-form-label">Apellido</label>
+					<div class="col-sm-10">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR Apellido , Y ENVIARLO AL OBJETO apellido -->
+						<input th:field="*{apellido}" type="text" class="form-control"
+							id="idapellido">
+					</div>
+				</div>
+
+				<!--  NOMBRE -->
+				<div class="form-group row">
+					<label for="idnombre" class="col-sm-2 col-form-label">Nombre</label>
+					<div class="col-sm-10">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR nombre , Y ENVIARLO AL OBJETO nombre -->
+						<input th:field="*{nombre}" type="text" class="form-control"
+							id="idnombre">
+					</div>
+				</div>
+
+				<!--  NACIONALIDAD -->
+				<div class="form-group row">
+					<label for="idnacionalidad" class="col-sm-2 col-form-label">Nacionalidad</label>
+					<div class="col-sm-10">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR nacionalidad , Y ENVIARLO AL OBJETO nacionalidad -->
+						<input th:field="*{nacionalidad}" type="text" class="form-control"
+							id="idnacionalidad">
+					</div>
+				</div>
+
+
+
+
+			</div>
+			<div class="card-footer">
+			<!-- BOTON GUARDAR -->
+				<input type="submit" value="Guardar" class="btn btn-success">
+			</div>
+		</div>
+
+	</form>
+
+
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
