@@ -10,9 +10,10 @@
 	crossorigin="anonymous">
 
 </head>
-
+<!-- CUERPO DE LA VISTA CONTENEDOR DE DIVS Y SCRIPTS-->
 <body class="container">
 	<h1>Alta Registro</h1>
+	<!-- CAJA CON CLASE CONTENEDORA DE FORMULARIOS, LABELS, INPUTS-->
 	<div class="container">
 
 		<h3>Registro Tracking Vehiculos</h3>
@@ -20,9 +21,10 @@
 
 
 
-		<!-- TRIPULANTE -->
+		<!-- SECCION DE TRIPULANTE -->
 
 		<!-- BOTON DE OPCIONES DE TRIPULANTES -->
+		<!-- data-target: INDICA EL ID DEL MODAL QUE USARAN LOS BOTONES -->
 		<button type="button" class="btn btn-success" data-toggle="modal"
 			data-target="#modalBuscarTripulante">Buscar Tripulante</button>
 		<button type="button" class="btn btn-success" data-toggle="modal"
@@ -32,6 +34,7 @@
 
 		<!-- LISTA DE TRIPULANTES  -->
 		<div class="card-body">
+			<!-- CLASS TABLE-RESPONSIVE PARA QUE LA TABLA SE ADAPTE AL NAVEGADOR -->
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead class="thead-dark">
@@ -44,6 +47,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						<!-- ELEMENTOS DE LA LISTA, SE UTILIZA th:each PARA RECORRER LA LISTA -->
 						<tr th:each="tripulante : ${tripulantes}">
 							<td th:text="${tripulante.idTripulante}"></td>
 							<td th:text="${tripulante.documento}"></td>
@@ -67,8 +71,10 @@
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<form id="formBuscarTripulante" th:object="${tripulanteDelForm}"
-						th:action="@{/buscarTripulante}" method="post">
+					<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DE LA BUSQUEDA DE TRIPULANTE Y MANDARLAS AL SERVIDOR  -->
+					<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /buscarTripulante Y th:object DECLARA EL OBJETO MODELO A USAR -->
+					<form id="formBuscarTripulante" th:action="@{/buscarTripulante}"
+						th:object="${tripulanteDelForm}" method="post">
 						<div class="modal-header">
 							<h5 class="modal-title" id="agregarTripulanteModal">Buscar
 								Tripulante</h5>
@@ -79,6 +85,7 @@
 						</div>
 						<div class="modal-body">
 							<div class="form-group">
+								<!-- INPUT PARA INGRESAR UN NUMERO DE DNI,  th:field PARA ASIGNAR ESE VALOR EN LA VARIABLE ESPECIFICADA -->
 								<label for="apellido">DNI:</label> <input class="form-control"
 									id="documento" th:field="${tripulanteDelForm.documento}"
 									placeholder="Ingresar Documento"></input>
@@ -103,8 +110,13 @@
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<form id="formAgregarTripulante" th:object="${tripulanteDelForm}"
-						th:action="@{/agregarTripulante}" method="post">
+
+					<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DE AGREGAR UN TRIPULANTE Y MANDARLAS AL SERVIDOR  -->
+					<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /agregarTripulante Y th:object DECLARA EL OBJETO MODELO A USAR -->
+					<form id="formAgregarTripulante" th:action="@{/agregarTripulante}"
+						th:object="${tripulanteDelForm}" method="post">
+
+
 						<div class="modal-header">
 							<h5 class="modal-title" id="agregarTripulanteModal">Agregar
 								Tripulante</h5>
@@ -115,6 +127,8 @@
 						</div>
 						<div class="modal-body">
 							<div class="form-group">
+
+								<!-- INPUT PARA INGRESAR LOS VALORES A LOS CAMPOS,  th:field PARA ASIGNAR ESE VALOR EN LA VARIABLE ESPECIFICADA -->
 								<label for="documento" class="required control-label">DNI:
 								</label> <input class="form-control" id="documento"
 									th:field="${tripulanteDelForm.documento}"
@@ -122,7 +136,7 @@
 									for="apellido" class="required control-label">Apellido:
 								</label> <input class="form-control" id="apellido"
 									th:field="${tripulanteDelForm.apellido}"
-									placeholder="Ingresar Apellido" required></input> <label
+									placeholder="Ingresar Apellido" required></input><label
 									for="nombre" class="required control-label">Nombre: </label> <input
 									class="form-control" id="nombre"
 									th:field="${tripulanteDelForm.nombre}"
@@ -148,6 +162,7 @@
 		<!-- VEHICULO -->
 
 		<!-- BOTON DE BUSCAR VEHICULO -->
+		<!-- data-target: INDICA EL ID DEL MODAL QUE USARA EL BOTON -->
 		<button type="button" class="btn btn-success" data-toggle="modal"
 			data-target="#modalBuscarVehiculo">Buscar Vehiculo</button>
 
@@ -155,6 +170,7 @@
 
 		<!-- LISTA DE VEHICULOS ENCONTRADOS -->
 		<div class="card-body">
+			<!-- TABLA RESPONSIVA PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR -->
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead class="thead-dark">
@@ -170,6 +186,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						<!-- ELEMENTOS DE LA LISTA, SE UTILIZA th:each PARA RECORRER LA LISTA -->
 						<tr th:each="vehiculo : ${vehiculoEncontrado}">
 							<td th:text="${vehiculoEncontrado.patente}"></td>
 							<td th:text="${vehiculoEncontrado.color}"></td>
@@ -196,8 +213,11 @@
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<form id="formBuscarVehiculo" th:object="${vehiculo}"
-						th:action="@{/buscarVehiculo}" method="post">
+
+					<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DE BUSCAR UN VEHICULO Y MANDARLAS AL SERVIDOR  -->
+					<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /buscarVehiculo Y th:object DECLARA EL OBJETO MODELO A USAR -->
+					<form id="formBuscarVehiculo" th:action="@{/buscarVehiculo}"
+						th:object="${vehiculo}" method="post">
 						<div class="modal-header">
 							<h5 class="modal-title" id="agregarVehiculoModal">Buscar
 								Vehiculo</h5>
@@ -208,6 +228,7 @@
 						</div>
 						<div class="modal-body">
 							<div class="form-group">
+								<!-- INPUT PARA INGRESAR UN NUMERO DE PATENTE,  th:field PARA ASIGNAR ESE VALOR EN LA VARIABLE ESPECIFICADA -->
 								<label for="patente">Patente:</label> <input
 									class="form-control" id="patente"
 									th:field="${vehiculo.patente}" placeholder="Ingresar Patente"></input>
@@ -236,6 +257,7 @@
 
 		<!-- LISTA DE VEHICULO AGREGADO -->
 		<div class="card-body">
+			<!-- TABLA RESPONSIVA PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR -->
 			<div class="table-responsive">
 				<table class="table table-striped">
 					<thead class="thead-dark">
@@ -251,6 +273,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						<!-- ELEMENTOS DE LA LISTA, SE UTILIZA th:each PARA RECORRER LA LISTA -->
 						<tr th:each="vehiculo : ${vehiculoGuardado}">
 							<td th:text="${vehiculoGuardado.patente}"></td>
 							<td th:text="${vehiculoGuardado.color}"></td>
@@ -274,8 +297,11 @@
 			aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
 				<div class="modal-content">
-					<form id="formAgregarVehiculo" th:object="${vehiculo}"
-						th:action="@{/agregarVehiculo}" method="post">
+
+					<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DE AGREGAR UN VEHICULO Y MANDARLAS AL SERVIDOR  -->
+					<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /agregarVehiculo Y th:object DECLARA EL OBJETO MODELO A USAR -->
+					<form id="formAgregarVehiculo" th:action="@{/agregarVehiculo}"
+						th:object="${vehiculo}" method="post">
 						<div class="modal-header">
 							<h5 class="modal-title" id="agregarTripulanteModal">Agregar
 								Vehiculo</h5>
@@ -286,6 +312,8 @@
 						</div>
 						<div class="modal-body">
 							<div class="form-group">
+
+								<!-- INPUT PARA INGRESAR LOS VALORES A LOS CAMPOS,  th:field PARA ASIGNAR ESE VALOR EN LA VARIABLE ESPECIFICADA -->
 								<label for="patente" class="required control-label">PATENTE:
 								</label> <input class="form-control" id="patente"
 									th:field="${vehiculo.patente}" placeholder="Ingresar PATENTE"
@@ -376,7 +404,7 @@
 
 
 
-
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

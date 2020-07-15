@@ -11,18 +11,25 @@
 	crossorigin="anonymous">
 
 </head>
+<!-- CUERPO DE LA VISTA -->
 <body class="container">
 
+	<!-- ESPACIO DE PARRAFO -->
 	<p>
+
+		<!-- ELEMENTO FORM PARA REDIGIR UN INPUT HACIA LA PAGINA INDICADA -->
 	<form action="/admin">
 
 		<input type="submit" class="confondo" value="ATRAS" />
 	</form>
-<br>
+	<br>
+
+
+	<!--  ENLACE HACIA /nuevoLocalidad Y CLASS btn PARA BOTON DE TIPO PRIMARIO-->
 	<a th:href="@{/nuevoLocalidad}" class="btn btn-primary">Nuevo</a>
 
 
-
+	<!-- ESPACIOS -->
 	<br>
 	<br>
 	<a></a>
@@ -30,6 +37,7 @@
 	<br>
 	<br>
 
+	<!-- LISTADO DE LOCALIDADES -->
 	<h1>LISTADO DE LOCALIDADES</h1>
 	<div class="table-responsive">
 		<table class="table table-striped">
@@ -41,14 +49,14 @@
 			</thead>
 
 			<tbody>
-				<!-- recorre lo que seria el listado de usuarios "usuarios", trae de la BD -->
+				<!-- SE UTILIZA th:each PARA RECORRER LA LISTA -->
 				<tr th:each="localidad:${localidades}">
 					<td th:text="${localidad.idLocalidad}"></td>
 					<td th:text="${localidad.nombre}"></td>
 
 					<td>
-						<!-- referencia,ruta de acceso para el controlador --> <a
-						th:href="@{/editarL/}+${localidad.idLocalidad}"
+						<!-- REFERENCIAS A RUTAS DE ACCESO PARA LOS CONTROLADORES DE EDITAR Y ELIMINAR -->
+						<a th:href="@{/editarL/}+${localidad.idLocalidad}"
 						class="btn btn-warning">Editar</a> <a
 						th:href="@{/eliminarL/}+${localidad.idLocalidad}"
 						class="btn btn-danger">Eliminar</a>
@@ -58,6 +66,8 @@
 			</tbody>
 		</table>
 	</div>
+
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

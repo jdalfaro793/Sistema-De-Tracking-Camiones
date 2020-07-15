@@ -10,55 +10,69 @@
 	crossorigin="anonymous">
 
 </head>
-
+<!-- CUERPO DE LA VISTA -->
 <body class="container">
 	<h1>Alta de Tripulante</h1>
-	<form th:action="@{/saveTripulante}" th:object=${tripulante} method="POST">
+
+	<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DEL USUARIO Y MANDARLAS AL SERVIDOR  -->
+	<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /saveTripulante Y th:object DECLARA EL OBJETO MODELO A USAR -->
+
+	<form th:action="@{/saveTripulante}" th:object=${tripulante}
+		method="POST">
 		<div class="card">
 			<div class="card-header">
-				<h3>EQUIPO</h3>
 			</div>
 			<div class="card-body">
-			
+
+				<!-- CAMPO DE ENTRADA ESCONDIDO QUE HACE REFERENCIA AL ID DEL TRIPULANTE -->
 				<input type="hidden" th:field="*{idTripulante}" />
-				
+
 				<!-- DOCUMENTO -->
 				<div class="form-group row">
 					<label for="iddocumento" class="col-sm-2 col-form-label">Documento</label>
 					<div class="col-sm-10">
-						<input th:field="*{documento}" type="text" class="form-control" id="iddocumento">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR documento , Y ENVIARLO AL OBJETO documento -->
+						<input th:field="*{documento}" type="text" class="form-control"
+							id="iddocumento">
 					</div>
 				</div>
-				
+
 				<!-- APELLIDO  -->
 				<div class="form-group row">
 					<label for="idapellido" class="col-sm-2 col-form-label">Apellido</label>
 					<div class="col-sm-10">
-						<input th:field="*{apellido}" type="text" class="form-control" id="idapellido">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR Apellido , Y ENVIARLO AL OBJETO apellido -->
+						<input th:field="*{apellido}" type="text" class="form-control"
+							id="idapellido">
 					</div>
 				</div>
-				
+
 				<!--  NOMBRE -->
 				<div class="form-group row">
 					<label for="idnombre" class="col-sm-2 col-form-label">Nombre</label>
 					<div class="col-sm-10">
-						<input th:field="*{nombre}" type="text" class="form-control" id="idnombre">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR nombre , Y ENVIARLO AL OBJETO nombre -->
+						<input th:field="*{nombre}" type="text" class="form-control"
+							id="idnombre">
 					</div>
 				</div>
-				
+
 				<!--  NACIONALIDAD -->
 				<div class="form-group row">
 					<label for="idnacionalidad" class="col-sm-2 col-form-label">Nacionalidad</label>
 					<div class="col-sm-10">
-						<input th:field="*{nacionalidad}" type="text" class="form-control" id="idnacionalidad">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR nacionalidad , Y ENVIARLO AL OBJETO nacionalidad -->
+						<input th:field="*{nacionalidad}" type="text" class="form-control"
+							id="idnacionalidad">
 					</div>
 				</div>
 
-				
-				
-				
+
+
+
 			</div>
 			<div class="card-footer">
+			<!-- BOTON GUARDAR -->
 				<input type="submit" value="Guardar" class="btn btn-success">
 			</div>
 		</div>
@@ -66,7 +80,7 @@
 	</form>
 
 
-
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

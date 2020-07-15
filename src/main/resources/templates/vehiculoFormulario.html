@@ -10,36 +10,42 @@
 	crossorigin="anonymous">
 
 </head>
-
+<!-- CUERPO DE LA VISTA -->
 <body class="container">
 	<h1>Alta de Vehiculo</h1>
+
+	<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DEL USUARIO Y MANDARLAS AL SERVIDOR  -->
+	<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /saveVehiculo Y th:object DECLARA EL OBJETO MODELO A USAR -->
+
 	<form th:action="@{/saveVehiculo}" th:object=${vehiculo} method="POST">
-	
+
 		<div class="card">
-		
+
 			<div class="card-header">
 				<h3>VEHICULO</h3>
 			</div>
-			
-			<div class="card-body">
 
-				<input type="hidden" th:field="*{idVehiculo}"/>
+			<div class="card-body">
+				<!-- CAMPO DE ENTRADA ESCONDIDO QUE HACE REFERENCIA AL ID DEL VEHICULO -->
+				<input type="hidden" th:field="*{idVehiculo}" />
 
 				<!-- PATENTE -->
 				<div class="form-group row">
 					<label for="idpatente" class="col-sm-2 col-form-label">Patente</label>
 					<div class="col-sm-10">
-						<input th:field="*{patente}" type="text"
-							class="form-control" id="idpatente">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR Patente , Y ENVIARLO AL ATRIBUTO patente DEL VEHICULO-->
+						<input th:field="*{patente}" type="text" class="form-control"
+							id="idpatente">
 					</div>
 				</div>
-				
+
 				<!-- COLOR -->
 				<div class="form-group row">
 					<label for="idcolor" class="col-sm-2 col-form-label">Color</label>
 					<div class="col-sm-10">
-						<input th:field="*{color}" type="text"
-							class="form-control" id="idcolor">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR Color , Y ENVIARLO AL ATRIBUTO color DEL VEHICULO -->
+						<input th:field="*{color}" type="text" class="form-control"
+							id="idcolor">
 					</div>
 				</div>
 
@@ -47,71 +53,80 @@
 				<div class="form-group row">
 					<label for="idtitular" class="col-sm-2 col-form-label">Titular</label>
 					<div class="col-sm-10">
-						<input th:field="*{titular}" type="text"
-							class="form-control" id="idtitular">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR titular , Y ENVIARLO AL ATRIBUTO titular DEL VEHICULO -->
+						<input th:field="*{titular}" type="text" class="form-control"
+							id="idtitular">
 					</div>
 				</div>
-				
+
 				<!--MARCA  -->
 				<div class="form-group row">
 					<label for="idmarca" class="col-sm-2 col-form-label">Marca</label>
 					<div class="col-sm-10">
-						<input th:field="*{marca}" type="text"
-							class="form-control" id="idmarca">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR marca , Y ENVIARLO AL ATRIBUTO marca DEL VEHICULO -->
+						<input th:field="*{marca}" type="text" class="form-control"
+							id="idmarca">
 					</div>
 				</div>
-				
+
 				<!--MODELO  -->
 				<div class="form-group row">
 					<label for="idmodelo" class="col-sm-2 col-form-label">Modelo</label>
 					<div class="col-sm-10">
-						<input th:field="*{modelo}" type="text"
-							class="form-control" id="idmodelo">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR modelo , Y ENVIARLO AL ATRIBUTO modelo DEL VEHICULO -->
+						<input th:field="*{modelo}" type="text" class="form-control"
+							id="idmodelo">
 					</div>
 				</div>
-				
+
 				<!-- TIPO -->
 				<div class="form-group row">
 					<label for="idtipo" class="col-sm-2 col-form-label">Tipo</label>
 					<div class="col-sm-10">
-						<input th:field="*{tipo}" type="text"
-							class="form-control" id="idtipo">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR tipo , Y ENVIARLO AL ATRIBUTO tipo DEL VEHICULO -->
+						<input th:field="*{tipo}" type="text" class="form-control"
+							id="idtipo">
 					</div>
 				</div>
-				
+
 				<!--NUMERO CHASIS  -->
 				<div class="form-group row">
-					<label for="idnumeroChasis" class="col-sm-2 col-form-label">Numero De Chasis</label>
+					<label for="idnumeroChasis" class="col-sm-2 col-form-label">Numero
+						De Chasis</label>
 					<div class="col-sm-10">
-						<input th:field="*{numeroChasis}" type="text"
-							class="form-control" id="idnumeroChasis">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR numero de chasis , Y ENVIARLO AL ATRIBUTO numeroChasis DEL VEHICULO -->
+						<input th:field="*{numeroChasis}" type="text" class="form-control"
+							id="idnumeroChasis">
 					</div>
 				</div>
-				
+
 				<!-- NUMERO DE MOTOR -->
 				<div class="form-group row">
-					<label for="idnumeroMotor" class="col-sm-2 col-form-label">Numero de Motor</label>
+					<label for="idnumeroMotor" class="col-sm-2 col-form-label">Numero
+						de Motor</label>
 					<div class="col-sm-10">
-						<input th:field="*{numeroMotor}" type="text"
-							class="form-control" id="idnumeroMotor">
+						<!-- CAMPO DE ENTRADA PARA INGRESAR numero de motor , Y ENVIARLO AL ATRIBUTO numeroMotor DEL VEHICULO -->
+						<input th:field="*{numeroMotor}" type="text" class="form-control"
+							id="idnumeroMotor">
 					</div>
 				</div>
 
-				
 
-			
+
+
 
 			</div>
 			<div class="card-footer">
+				<!-- BOTON GUARDAR -->
 				<input type="submit" value="Guardar" class="btn btn-success">
 			</div>
-	
+
 		</div>
 
 	</form>
 
 
-
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

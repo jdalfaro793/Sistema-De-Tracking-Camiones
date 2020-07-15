@@ -10,48 +10,59 @@
 	crossorigin="anonymous">
 
 </head>
-
+<!-- CUERPO DE LA VISTA -->
 <body class="container">
 
+	<!-- ESPACIO DE PARRAFO -->
 	<p>
+
+		<!-- ELEMENTO FORM PARA REDIGIR UN INPUT HACIA LA PAGINA INDICADA -->
 	<form action="/admin">
 
 		<input type="submit" class="confondo" value="ATRAS" />
 	</form>
+
+
 	<h1>Alta de Localidad</h1>
-	
-	<form th:action="@{/saveLocalidad}" th:object=${localidad} method="POST">
-	
+
+	<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DEL USUARIO CONSULTOR Y MANDARLAS AL SERVIDOR  -->
+	<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /saveLocalidad Y th:object DECLARA EL OBJETO MODELO A USAR -->
+
+	<form th:action="@{/saveLocalidad}" th:object=${localidad}
+		method="POST">
+
+		<!-- CAJA CON CLASE TARJETA, PARA ALMACENAR LOS LABEL E INPUTS-->
 		<div class="card">
-		
+
 			<div class="card-header">
 				<h3>EQUIPO</h3>
 			</div>
-			
+
 			<div class="card-body">
-			
+
+				<!-- CAMPO DE ENTRADA ESCONDIDO QUE REFERENCIA AL ID DE LA LOCALIDAD -->
 				<input type="hidden" th:field="*{idLocalidad}" />
-				
-				<!-- Nombre localidad -->
+				<!-- SECCION PARA INGRESAR EL NOMBRE Y REDIRIGIRLO MEDIANTE th:field AL ATRIBUTO -->
 				<div class="form-group row">
 					<label for="idnombre" class="col-sm-2 col-form-label">Nombre</label>
 					<div class="col-sm-10">
-						<input th:field="*{nombre}" type="text" class="form-control" id="idnombre">
+						<input th:field="*{nombre}" type="text" class="form-control"
+							id="idnombre">
 					</div>
 				</div>
-				
+
 			</div>
-			
+			<!-- PIE DE TARJETA Y CAMPO DE ENTRADA PARA GUARDAR LOS DATOS -->
 			<div class="card-footer">
 				<input type="submit" value="Guardar" class="btn btn-success">
 			</div>
-			
+
 		</div>
 
 	</form>
 
 
-
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>

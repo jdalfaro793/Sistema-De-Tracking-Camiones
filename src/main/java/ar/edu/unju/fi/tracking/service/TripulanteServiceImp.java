@@ -70,6 +70,11 @@ public class TripulanteServiceImp implements ITripulanteService{
 		listadoAuxiliar = new ArrayList<>();
 		
 	}
+
+	public Tripulante buscarTripulanteDNI(String documento) {
+		// TODO Auto-generated method stub
+		return tripulanteImp.findAllByDocumento(documento);
+	}
  
 	
 	

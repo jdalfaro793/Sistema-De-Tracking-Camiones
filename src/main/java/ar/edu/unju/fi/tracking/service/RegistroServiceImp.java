@@ -7,17 +7,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.Registro;
+
+import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.repository.IRegistro;
 
 @Service
-public class RegistroServiceImp implements IRegistroService{
+public class RegistroServiceImp implements IRegistroService {
 
 	@Autowired
 	IRegistro registroImp;
-	
+
 	@Override
 	public void guardarRegistro(Registro registro) {
 		// TODO Auto-generated method stub
@@ -42,14 +43,23 @@ public class RegistroServiceImp implements IRegistroService{
 	public void eliminarRegistro(Long id) {
 		// TODO Auto-generated method stub
 		registroImp.deleteById(id);
-		
+
 	}
-	
+
 	// ---- CONSULTAS
 
-	//Consulta 3
-	
-	/**Se ordena los registros de la patente buscada por orden descendente
+	// Consulta 2
+
+	@Override
+	public List<Registro> buscarPorTripulanteOrdenFechaHora(Tripulante tripulante) {
+		// TODO Auto-generated method stub
+		return registroImp.findAllByTripulanteOrderByFechaHora(tripulante);
+	}
+
+	// Consulta 3
+
+	/**
+	 * Se ordena los registros de la patente buscada por orden descendente
 	 *
 	 */
 	@Override
@@ -57,10 +67,5 @@ public class RegistroServiceImp implements IRegistroService{
 		// TODO Auto-generated method stub
 		return registroImp.findAllByVehiculoOrderByFechaHora(vehiculo);
 	}
-
-	
-	
-	
-	
 
 }

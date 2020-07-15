@@ -10,20 +10,26 @@
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
 </head>
+<!-- CUERPO DE LA VISTA -->
 <body>
+	<!-- CLASE CONTENEDORA DE DIVS, FORMS, LABELS. INPUTS -->
 	<div class="container">
 		<p>
+			<!--  ENLACE HACIA /admin -->
 		<form action="/admin">
-
 			<input type="submit" class="confondo" value="ATRAS" />
 		</form>
-		<br>
-			<a th:href="@{/nuevoUsuario}" class="btn btn-primary">Nuevo</a> <br>
-			<br>
+
+		<!--  ENLACE HACIA /nuevoUsuario Y CLASS btn PARA BOTON DE TIPO PRIMARIO-->
+		<br> <a th:href="@{/nuevoUsuario}" class="btn btn-primary">Nuevo</a>
+		<!-- ESPACIOS -->
+		<br> <br>
 		<h1>LISTADO DE USUARIO</h1>
+		<!-- TABLA RESPONSIVA PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR -->
 		<div class="table-responsive">
 			<table class="table table-striped">
 				<thead>
+					<!-- CAMPOS DE LA TABLA -->
 					<tr>
 						<th scope="col">ID</th>
 						<th scope="col">Nombre de Usuario</th>
@@ -33,7 +39,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<!-- recorre lo que seria el listado de usuarios "usuarios", trae de la BD -->
+					<!-- SE UTILIZA th:each PARA RECORRER LA LISTA -->
 					<tr th:each="usuario:${usuarios}">
 						<td th:text="${usuario.id}"></td>
 						<td th:text="${usuario.nombreUsuario}"></td>
@@ -42,22 +48,20 @@
 						<td th:text="${usuario.tipoUsuario}"></td>
 
 						<td>
-							<!-- referencia,ruta de acceso para el controlador --> <a
-							th:href="@{/editar/}+${usuario.id}" class="btn btn-warning">Editar</a>
+							<!-- REFERENCIAS A RUTAS DE ACCESO PARA LOS CONTROLADORES DE EDITAR Y ELIMINAR -->
+							<a th:href="@{/editar/}+${usuario.id}" class="btn btn-warning">Editar</a>
 							<a th:href="@{/eliminar/}+${usuario.id}" class="btn btn-danger">Eliminar</a>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-
-
-
-
 		<div class="alert-danger text-center" th:if="${formAutorErrorMessage}"
 			th:text="${formAutorErrorMessage}">Name Error</div>
-		<!-- ultimo div -->
 	</div>
+
+
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

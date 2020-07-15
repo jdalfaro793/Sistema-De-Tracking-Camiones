@@ -8,15 +8,14 @@ import org.springframework.data.jpa.repository.Query;
 
 import ar.edu.unju.fi.tracking.model.Tripulante;
 
+public interface ITripulante extends JpaRepository<Tripulante, Long> {
 
+	// Permite ordenar la tabla por atributo nombre Real
+	@Query("from Tripulante e order by e.nombre")
+	public List<Tripulante> obtenerTripulantes();
 
-public interface ITripulante extends JpaRepository<Tripulante, Long>{
+	// prueba
+	public Optional<Tripulante> findByDocumento(String documento);
 
-	//Permite ordenar la tabla por atributo nombre Real
-		@Query("from Tripulante e order by e.nombre")
-		public List<Tripulante> obtenerTripulantes();
-		
-	//prueba
-		public Optional<Tripulante> findByDocumento(String documento);
-			
+	Tripulante findAllByDocumento(String documento);
 }
