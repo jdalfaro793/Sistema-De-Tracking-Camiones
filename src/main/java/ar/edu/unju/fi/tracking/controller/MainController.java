@@ -18,6 +18,11 @@ public class MainController {
 			return "login";
 		}
 
+		@GetMapping({"index"})
+		public String home(Model model) {
+			return "index";
+		}
+
 		
 		@GetMapping({"/consultor"})
 		public String ingresarConsultor(Model model) {

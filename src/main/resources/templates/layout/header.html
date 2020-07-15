@@ -13,16 +13,22 @@
 <body>
 
 	<div id="header" th:fragment="header">
-	
+
 		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand">Hello
-					[[${#httpServletRequest.remoteUser}]]!</a>
+			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+
+				<a class="navbar-brand">BIENVENIDO:
+					[[${#httpServletRequest.remoteUser}]]!</a> <a class="navbar-brand">A
+					Tracking Camiones</a>
+
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-					
+						<li class="nav-item active"><a class="nav-link" href="index">Home
+						</a></li>
 					</ul>
-					
+
+
 					<form class="form-inline my-2 my-lg-0" th:action="@{/logout}"
 						method="post">
 						<button class="btn btn-light" type="submit">Logout</button>
@@ -30,7 +36,7 @@
 				</div>
 			</nav>
 		</div>
-		
+
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

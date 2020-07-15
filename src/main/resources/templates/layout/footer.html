@@ -3,58 +3,141 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css"
+	href="webjars/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
 </head>
 <body>
 	<div id="footer" th:fragment="footer">
-		<footer class="font-small bg-info pt-4">
-			<div class="container">
-				<div class="row">
-					<div class="col-3">
-						<div class="card text-center">img face img wpp img insta
-						</div>
+		<!-- Footer -->
+		<footer class="page-footer font-small mdb-color pt-4">
+
+			<!-- Footer Links -->
+			<div class="container text-center text-md-left">
+
+				<!-- Footer links -->
+				<div class="row text-center text-md-left mt-3 pb-3">
+
+					<!-- Grid column -->
+					<div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+						<h6 class="text-uppercase mb-4 font-weight-bold">REGISTROS
+							ARGENTINA:</h6>
+						<p>San Salvador de Jujuy</p>
+						<p>Prov. de Jujuy</p>
+						<p>Argentina</p>
+						<p>+54 9 5728795</p>
 					</div>
-					<div class="col-6">
-						<div class="card text-center">Facultad de Ingenieria - Universidad Nacional de Jujuy
-						</div>
+					<!-- Grid column -->
+
+					<hr class="w-100 clearfix d-md-none">
+
+					<!-- Grid column -->
+					<div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+						<h6 class="text-uppercase mb-4 font-weight-bold">REGISTROS
+							ARGENTINA:</h6>
+						<p>Grupo dedicado a maketeo de registros, base de datos, capas, repositorios, vistas y todo referido a datos</p>
 					</div>
-					<div class="col-3 card text-center">
-						<div class="card text-center">Orgullosos del GRUPO 7!
-						</div>
+
+					<!-- Grid column -->
+
+					<hr class="w-100 clearfix d-md-none">
+
+
+
+					<!-- Grid column -->
+					<hr class="w-100 clearfix d-md-none">
+
+					<!-- Grid column -->
+					<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+						<h6 class="text-uppercase mb-4 font-weight-bold">Contacto</h6>
+						<p>
+							<i class="fas fa-home mr-3"></i> San Salvador de Jujuy, Argentina
+
+						</p>
+
+						<p>
+							<i class="fas fa-home mr-3"></i> General Belgrano 344 - Centro
+						</p>
+
+						<p>
+							<i class="fas fa-envelope mr-3"></i>registrojuyarg@gmail.com
+						</p>
+						<p>
+							<i class="fas fa-phone mr-3"></i> serviciosregistroarg@gmail.com
+						</p>
+
 					</div>
+					<!-- Grid column -->
+
 				</div>
-			</div>
-			
-			<div class="container">
-				<div class="row">
-					<div class="col-3 m-0">
-						<p>Integrantes:</p>
-						<p>* </p>
-						<p>* </p>
-						<p>* </p>
-						<p>* </p>
+				<!-- Footer links -->
+
+				<hr>
+
+				<!-- Grid row -->
+				<div class="row d-flex align-items-center">
+
+					<!-- Grid column -->
+					<div class="col-md-7 col-lg-8">
+
+						<!--Copyright-->
+						<p class="text-center text-md-left">
+							@ 2020 Copyright: <a href="https://mdbootstrap.com/"> <strong>
+									RegistrosArgentinaSRL.com</strong>
+							</a>
+						</p>
+
 					</div>
-					<div class="col-6">
-						<p>imegen unju fi</p>
-						<p>profesor a cargo: </p>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="col-md-5 col-lg-4 ml-lg-0">
+
+						<!-- Social buttons -->
+						<div class="text-center text-md-right">
+							<ul class="list-unstyled list-inline">
+								<li class="list-inline-item"><a
+									class="btn-floating btn-sm rgba-white-slight mx-1"> <i
+										class="fab fa-facebook-f"></i>
+								</a></li>
+								<li class="list-inline-item"><a
+									class="btn-floating btn-sm rgba-white-slight mx-1"> <i
+										class="fab fa-twitter"></i>
+								</a></li>
+								<li class="list-inline-item"><a
+									class="btn-floating btn-sm rgba-white-slight mx-1"> <i
+										class="fab fa-google-plus-g"></i>
+								</a></li>
+								<li class="list-inline-item"><a
+									class="btn-floating btn-sm rgba-white-slight mx-1"> <i
+										class="fab fa-linkedin-in"></i>
+								</a></li>
+							</ul>
+						</div>
+
 					</div>
-					<div class="col-3">
-						<p>Direccion de la Facultad de ingenieria perteneciente a la unju: </p>
-						<p>afasfasfasasas </p>
-						
-					</div>
+					<!-- Grid column -->
+
 				</div>
+				<!-- Grid row -->
+
 			</div>
-			<div class="footer-copyright text-center py-3 bg-danger"><b>© 2020 Copyright</b>
-    			<p> Grupo7 FI UNJU</p>
-  			</div>
+			<!-- Footer Links -->
+
 		</footer>
+		<!-- Footer -->
 	</div>
 
-<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}" type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>		
-<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}" type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
-<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}" type="text/javascript" src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-	
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+		type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+		type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
 </body>
 </html>

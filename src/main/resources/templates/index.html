@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>ADMIN</title>
+<title>Home</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -18,30 +18,40 @@
 <!-- CUERPO DE LA VISTA -->
 <body style="background-image: url('img/patron.jpg');">
 
-	<!-- CLASE CONTENEDORA DE FORMULARIOS, IMAGENES, INPUTS, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
+	<button class="btn btn-secondary btn-flotante"
+		th:onclick="'javascript:back();'">
+		<i class="fas fa-reply"></i> &nbsp; Volver
+	</button>
+
+	<script type="text/javascript">
+		function back() {
+			history.back();
+		}
+	</script>
+	<!-- CLASE CONTENEDORA DE FORMULARIOS, IMAGENES - INPUTS, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
 	<div
 		class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
-	<!-- CAJA CON CLASE TEXTO ALINEADO AL CENTRO-->
-		<div class="text-center">
-		
 
 
+		<div class="row">
+			<div>
+				<h2>Noticias del dia</h2>
 
 
+				<img src="img/imagen1.jpg" width="200px" height="165px" />
+				<p class="cardtext">
+					15/07/20<br>
+				</p>
+				<h4>INFORME:</h4>
+				119 CASOS NUEVOS<br> EN LA PROVINCIA
 
-			<!-- ELEMENTO ANCHOR, PARA REDIRECCIONAR A SECCION DE CONSULTA DE TRIPULANTE Y  UNA IMAGEN DE REFERENCIA-->
-			<a href="/ingresarTripulante"> <img
-				src="/img/consultaTripulante.png" width="30%" alt="Responsive image"></a>
+			</div>
 
-			<!-- ELEMENTO ANCHOR, PARA REDIRECCIONAR A SECCION DE CONSULTA DE PATENTE, Y  UNA IMAGEN DE REFERENCIA-->
-			<a href="/ingresarPatente"><img src="/img/consultaPatente.png"
-				width="30%" alt="Responsive image"></a>
-
-
+			
 		</div>
 
-	</div>
 
+	</div>
 
 
 	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
@@ -60,4 +70,5 @@
 
 <!-- INSERCION DE FOOTER -->
 <div th:insert="layout/footer :: footer"></div>
+
 </html>
