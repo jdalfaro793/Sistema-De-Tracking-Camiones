@@ -30,7 +30,7 @@ public class MainController {
 		 * @param model
 		 * @return
 		 */
-		@GetMapping({"index"})
+
 		public String home(Model model) {
 			return "index";
 		}
@@ -63,7 +63,14 @@ public class MainController {
 		public String ingresarRegistrador(Model model) {
 			return "registrador";
 		}
-		
+		/**
+		 * Muestra la pagina sinPermisos usada por webSecurityConfig ante la peticion /sinPermisos  
+		 * @return pagina sin permisos
+		 */
+		@GetMapping("/sinPermisos")
+		public String sinPermisos() {
+			return "sinPermisos";
+		}
 		
 	}
 	
@@ -90,60 +97,6 @@ public class MainController {
 	
 	
 	
-	
-	
-	/**
-	 * 
-	 * cosas a borrar
-	 * 
-	 * 
-	 */
-	
-	
-	
-//	@RequestMapping("/usuarios")
-//	public String main(Model model) {
-//		List<Usuario> usuarios = usuarioService.obtenerUsuarios();
-//		model.addAttribute("usuarios", usuarios);
-//		return "usuariosListado";
-//	}
-//
-//	@GetMapping("nuevoUsuario")
-//	public String agregar(Model model) {
-//		model.addAttribute("usuario", usuario);
-//		return "usuarioFormulario";
-//	}
-//
-//	@PostMapping("/save")
-//	public String guardar(@Valid Usuario usuario, Model model) {
-//
-//		usuarioService.guardarUsuario(usuario);
-//		return "redirect:/usuarios";
-//
-//	}
-//
-//	
-//
-//	@RequestMapping("/vehiculos")
-//	public String vehiculo(Model model) {
-//		List<Vehiculo> vehiculos = vehiculoService.obtenerVehiculos();
-//		model.addAttribute("vehiculos", vehiculos);
-//		return "vehiculosListado";
-//	}
-//
-//	@GetMapping("nuevoVehiculo")
-//	public String agregar1(Model model) {
-//		model.addAttribute("vehiculo", vehiculo);
-//		return "vehiculosFormulario";
-//	}
-//
-//	@PostMapping("/saveVehiculo")
-//	public String guardar(@Valid Vehiculo vehiculo, Model model) {
-//
-//		vehiculoService.guardarVehiculo(vehiculo);
-//		return "redirect:/vehiculos";
-//	}
-
 
 
 

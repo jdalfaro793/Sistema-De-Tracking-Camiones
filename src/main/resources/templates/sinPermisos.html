@@ -1,44 +1,49 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+
+<meta charset="UTF-8">
+<title>Home</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
 	crossorigin="anonymous">
+<link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
-
-	<div id="header" th:fragment="header">
-
-		<div class="container">
-			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
 
-				<a class="navbar-brand">BIENVENIDO:
-					[[${#httpServletRequest.remoteUser}]]!</a> <a class="navbar-brand">A
-					Tracking Camiones</a>
 
-				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-					<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-						<li class="nav-item active"><a class="nav-link" href="/home">Home
-						</a></li>
-					</ul>
+<!-- CUERPO DE LA VISTA -->
+<body style="background-image: url('img/patron.jpg');">
+
+	<button class="btn btn-secondary btn-flotante"
+		th:onclick="'javascript:back();'">
+		<i class="fas fa-reply"></i> &nbsp; Volver
+	</button>
+
+	<script type="text/javascript">
+		function back() {
+			history.back();
+		}
+	</script>
+	<!-- CLASE CONTENEDORA DE FORMULARIOS, IMAGENES - INPUTS, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
+	<div
+		class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
 
 
-					<form class="form-inline my-2 my-lg-0" th:action="@{/logout}"
-						method="post">
-						<button class="btn btn-light" type="submit">Logout</button>
-					</form>
-				</div>
-			</nav>
+		<div class="row">
+			<div>
+			<h1>USTED NO TIENE PERMISOS PARA VER LA PAGINA SOLICITADA :(</h1>
+			</div>
+
+			
 		</div>
+
 
 	</div>
 
+
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
 		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
 		crossorigin="anonymous"></script>
@@ -51,4 +56,8 @@
 		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
 		crossorigin="anonymous"></script>
 </body>
+
+
+
+
 </html>

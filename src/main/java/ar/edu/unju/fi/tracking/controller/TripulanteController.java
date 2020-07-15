@@ -31,6 +31,7 @@ public class TripulanteController {
 	ITripulanteService tripulanteService;
 	@Autowired
 	private Tripulante tripulante;
+
 	/**
 	 * Peticion para cargar el listado de tripulantes
 	 * @param model
@@ -45,6 +46,7 @@ public class TripulanteController {
 		return "tripulanteListado";
 		
 	} 
+
 	/**
 	 * Peticion para poder dar de alta un tripulante nuevo
 	 * @param model

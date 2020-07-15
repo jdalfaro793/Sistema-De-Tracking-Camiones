@@ -12,6 +12,18 @@
 </head>
 <!-- CUERPO DE LA VISTA -->
 <body class="container">
+
+
+	<!-- ESPACIO DE PARRAFO -->
+	<p>
+
+		<!-- ELEMENTO FORM PARA REDIGIR UN INPUT HACIA LA PAGINA INDICADA -->
+	<form action="/admin">
+
+		<input type="submit" class="confondo" value="ATRAS" />
+	</form>
+	<br>
+
 	<h1>Alta de Tripulante</h1>
 
 	<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DEL USUARIO Y MANDARLAS AL SERVIDOR  -->
@@ -20,8 +32,7 @@
 	<form th:action="@{/saveTripulante}" th:object=${tripulante}
 		method="POST">
 		<div class="card">
-			<div class="card-header">
-			</div>
+			<div class="card-header"></div>
 			<div class="card-body">
 
 				<!-- CAMPO DE ENTRADA ESCONDIDO QUE HACE REFERENCIA AL ID DEL TRIPULANTE -->
@@ -72,7 +83,7 @@
 
 			</div>
 			<div class="card-footer">
-			<!-- BOTON GUARDAR -->
+				<!-- BOTON GUARDAR -->
 				<input type="submit" value="Guardar" class="btn btn-success">
 			</div>
 		</div>
