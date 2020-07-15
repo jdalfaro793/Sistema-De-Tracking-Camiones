@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+
+<head>
+
+<!-- <link th:rel="stylesheet" th:href="@{/css/tempusdominus-bootstrap-4.min.css}" /> -->
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous" />
+
+<!-- 
+		<script th:src="@{/js/moment.min.js}"></script>	
+		<script th:src="@{/js/tempusdominus-bootstrap-4.min.js}"></script>
+		-->
+
+<meta charset="utf-8">
+<title>Consulta</title>
+</head>
+
+<body>
+
+	<div class="container col-sm-6">
+		<div class="col-12 mb-5">
+			<h2>Vehiculos por Localidad y Rango de Fechas</h2>
+		</div>
+
+		<form class="row" role="form" th:object="${consulta}"
+			th:action="@{/consultaVehiculos}" method="post">
+			<!-- Caja de Fecha inicial -->
+			<div class="card">
+
+				<div class="card-header">
+					<h4>Fecha Inicial</h4>
+					<h6>Dia/Mes/Año</h6>
+				</div>
+
+				<div class="card-body">
+
+					<div class="col-sm-10">
+						<div class="input-group date" id="datetimepicker1"
+							data-target-input="nearest">
+
+							<input type="text" class="form-control"
+								data-target="#datetimepicker1" id="fecha01"
+								th:field="${consulta.fechaDesde}" />
+
+							<div class="input-group-append" data-target="#datetimepicker1"
+								data-toggle="datetimepicker">
+								<div class="input-group-text">
+									<i class="fa fa-calendar-alt"></i>
+								</div>
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Caja de Fecha Final -->
+			<div class="card">
+
+				<div class="card-header">
+					<h4>Fecha Final</h4>
+					<h6>Dia/Mes/Año</h6>
+				</div>
+
+				<div class="card-body">
+
+					<div class="col-sm-10">
+						<div class="input-group date" id="datetimepicker2"
+							data-target-input="nearest">
+
+							<input type="text" class="form-control"
+								data-target="#datetimepicker2" id="fecha02"
+								th:field="${consulta.fechaHasta}" />
+
+							<div class="input-group-append" data-target="#datetimepicker2"
+								data-toggle="datetimepicker">
+								<div class="input-group-text">
+									<i class="fa fa-calendar-alt"></i>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Caja de Localidad -->
+			<div class="card">
+
+				<div class="card-header">
+					<h4>Localidades</h4>
+				</div>
+
+				<div class="card-body">
+					<select th:field="${consulta.localidad.nombre}"
+						class="custom-select mt-3 border-info">
+
+						<option th:each="localidad:${localidades}"
+							th:text="${localidad.nombre}" th:value="${localidad.nombre}"></option>
+
+					</select>
+				</div>
+			</div>
+
+			<script type="text/javascript">
+				$(function() {
+					$('#datetimepicker1').datetimepicker({
+						format : "DD/MM/YYYY"
+					});
+					$('#datetimepicker2').datetimepicker({
+						format : "DD/MM/YYYY"
+					});
+				});
+			</script>
+			<div class="col-sm-10" style="margin: 30px;">
+				<button class="border border-dark col-sm-6" type="submit">
+					<b>Buscar</b>
+				</button>
+			</div>
+
+
+		</form>
+
+		<!-- LISTA DE VEHICULOS ENCONTRADOS POR LA BUSQUEDA  -->
+		<div class="card shadow-sm ">
+
+			<h2
+				class="card-header text-center font-weight-normal bg-lighter-dark">Datos
+				de los Vehiculos</h2>
+
+			<div class="card-body">
+
+				<table class="table table-hover ">
+					<thead>
+						<tr>
+							<th scope="col">ID-Registro</th>
+							<th scope="col">Fecha</th>
+							<th scope="col">Titular</th>
+							<th scope="col">Patente</th>
+							<th scope="col">Modelo</th>
+							<th scope="col">Localidad</th>
+							<th scope="col">Buscar Tripulantes</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="registro:${consultaRegistros}">
+							<td th:text="${registro.id}"></td>
+							<td th:text="${registro.fechaHora}"></td>
+							<td th:text="${registro.vehiculo.titular}"></td>
+							<td th:text="${registro.vehiculo.patente}"></td>
+							<td th:text="${registro.vehiculo.modelo}"></td>
+							<td th:text="${registro.localidad.nombre}"></td>
+							<td><a th:href="@{/buscar/registro/} + ${registro.id}">
+									<button type="button" class="btn btn-secondary">Buscar</button>
+							</a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+<!-- LISTA DE TRIPULANTES ENCONTRADOS POR REGISTRO -->
+		<div class="card shadow-sm ">
+
+			<h2
+				class="card-header text-center font-weight-normal bg-lighter-dark">Datos
+				de los Vehiculos</h2>
+
+			<div class="card-body">
+
+				<table class="table table-hover ">
+					<thead>
+						<tr>
+							
+							<th scope="col">DNI</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Nacionalidad</th>
+							<th scope="col">Localidad</th>
+							<th scope="col">ID-Registro</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="registro:${tripulantes}">
+							<td th:text="${registro.documento}"></td>
+							<td th:text="${registro.apellido}"></td>
+							<td th:text="${registro.nombre}"></td>
+							<td th:text="${registro.nacionalidad}"></td>
+							<td th:text="${registro.id}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous">
+		
+	</script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous">
+		
+	</script>
+
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+	<script type="text/javascript" src="/path/to/jquery.js"></script>
+	<script type="text/javascript" src="/path/to/moment.js"></script>
+	<script type="text/javascript"
+		src="/path/to/tempusdominus-bootstrap-4.min.js"></script>
+
+</body>
+
+</html>

@@ -27,4 +27,7 @@ public interface IVehiculoService {
 
 	
 	public void guardarVehiculoEncontrado(Vehiculo vehiculo);
+	
+	//consulta
+	public Vehiculo buscarPatentePorNombre(String patente);
 }

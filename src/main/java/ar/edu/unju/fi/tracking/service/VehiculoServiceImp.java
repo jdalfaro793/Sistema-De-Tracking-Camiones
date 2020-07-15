@@ -52,12 +52,13 @@ public class VehiculoServiceImp implements IVehiculoService{
 	 * TODO Auto-generated method stub Optional<Vehiculo> vehiculos =
 	 * vehiculoImp.findByPatente(patente); return vehiculos; }
 	 */
-
-	@Override
-	public Vehiculo buscarVehiculo(String patente) throws Exception {
-		// TODO Auto-generated method stub
-		return vehiculoImp.findByPatente(patente);
-	}
+//esto se comento al ultimo
+	
+	 @Override public Vehiculo buscarVehiculo(String patente) throws Exception {
+	  // TODO Auto-generated method stub return vehiculoImp.findByPatente(patente);
+		 return vehiculoImp.findByPatente(patente);
+	 }
+	 
 
 	@Override
 	public Optional<Vehiculo> obtenerUnVehiculo(String patente) {
@@ -70,6 +71,16 @@ public class VehiculoServiceImp implements IVehiculoService{
 		listadoAuxiliar.add(vehiculo);
 		
 	}
+	
+	
+	//Consulta
+	@Override
+	public Vehiculo buscarPatentePorNombre(String patente) {
+		// TODO Auto-generated method stub
+		return vehiculoImp.findAllByPatente(patente);
+	}
+
+	
 	
 	
 	

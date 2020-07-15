@@ -20,5 +20,6 @@ public void guardarLocalidad(Localidad localidad);
 	public void eliminarLocalidad(Long id);
 	
 	
+
 	
 }

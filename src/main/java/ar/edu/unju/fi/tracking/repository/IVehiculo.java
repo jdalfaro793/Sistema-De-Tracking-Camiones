@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tracking.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -19,5 +20,9 @@ public interface IVehiculo extends JpaRepository<Vehiculo, Long>{
 	//prueba
 	public Vehiculo findByPatente(String patente);
 	
+	//Consulta
+	//public Optional<Vehiculo> findByPatente(String patente);
+	
+	Vehiculo findAllByPatente(String nombre);
 }
 
