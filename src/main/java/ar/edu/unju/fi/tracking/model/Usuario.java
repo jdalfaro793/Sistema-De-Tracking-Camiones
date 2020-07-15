@@ -8,11 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
 
-
+/**
+ * Clase Usuario, representa los atributos id, nombreUsuario, password, nombre, apellido, tipoUsuario
+ * permite crear un usuario con su respectivo rol
+ * @author RODOLFO 
+ *
+ */
 @Component
 @Entity
 @Table(name ="usuario")
@@ -20,35 +26,75 @@ import org.springframework.stereotype.Component;
 public class Usuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	@Id
+	
+	/*
+	 * --------------------------------- 
+	 * -------- Atributos --------------
+	 * ---------------------------------
+	 */
+	
 	//@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="native")
 	@GenericGenerator(name="native",strategy="native")
+	/**
+	 * Id, representa el id del usuario creado
+	 */
 	@Column(name = "ID")
 	private long id;
-	
+	/**
+	 * nombreUsuario, representa el nombre que elegira el usuario para loguearse
+	 */
+	@NotBlank(message="Ingrese su nombre ID")
 	@Column(name = "NOMBREUSUARIO" , length = 100 , nullable = true)
 	private String nombreUsuario;
 	
+	/**
+	 * password, representa la contraseña elegida por el usuario
+	 */
+	@NotBlank(message="Ingrese su contraseña")
 	@Column(name = "PASSWORD" , length = 150 , nullable = true)
 	private String password;
 	
+	/**
+	 * nombreReal, representa el nombre del usuario
+	 */
+	@NotBlank(message="Ingrese su nombre")
 	@Column(name = "NOMBREREAL" , length = 100 , nullable = true)
 	private String nombreReal;
 	
+	/**
+	 * apellidoReal, representa el apellido del usuario
+	 */
+	@NotBlank(message="Ingrese su apellido")
 	@Column(name = "APELLIDOREAL" , length = 100 , nullable = true)
 	private String apellidoReal;
 	
+	/**
+	 * tipoUsuario, representa el rol y permisos que tiene el usuario
+	 */
 	@Column(name = "TIPOUSUARIO" , length = 20 , nullable = true)
 	private String tipoUsuario;
 
-	// -------------------------
-	// ----- CONSTRUCTORES -----
-	// -------------------------
+	/*
+	 * --------------------------------- 
+	 * -------- Constructores-----------
+	 * ---------------------------------
+	 */
+	/**
+	 * Constructor Por Defecto
+	 */
 	public Usuario() {
 		super();
 	}
-
+	/**
+	 * Constructor Parametrizado
+	 * @param nombreUsuario
+	 * @param password
+	 * @param nombreReal
+	 * @param apellidoReal
+	 * @param tipoUsuario
+	 */
 	public Usuario(String nombreUsuario, String password, String nombreReal, String apellidoReal, String tipoUsuario) {
 		super();
 		this.nombreUsuario = nombreUsuario;
@@ -58,9 +104,11 @@ public class Usuario implements Serializable{
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	// -------------------------
-	// ----- METODOS ACCESORES -----
-	// -------------------------
+	/*
+	 * --------------------------------- 
+	 * -------- Metodos Accesores-------
+	 * ---------------------------------
+	 */
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
@@ -108,5 +156,18 @@ public class Usuario implements Serializable{
 	public void setId(long id) {
 		this.id = id;
 	}
+
+	/*
+	 * --------------------------------- 
+	 * -------- ToString --------------
+	 * ---------------------------------
+	 */
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nombreUsuario=" + nombreUsuario + ", password=" + password + ", nombreReal="
+				+ nombreReal + ", apellidoReal=" + apellidoReal + ", tipoUsuario=" + tipoUsuario + "]";
+	}
+	
+	
 	
 }

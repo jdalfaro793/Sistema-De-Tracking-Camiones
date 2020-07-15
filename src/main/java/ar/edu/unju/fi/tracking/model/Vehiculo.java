@@ -8,10 +8,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.stereotype.Component;
-
+/**
+ * Clase Vehiculo, representa los atributos idvehiculo, patente, color, titular, marca, modelo, tipo, 
+ * numero chasis, numero motor
+ * Nos va a permitir captar los datos de un vehiculo para poder agregarlo a un registro
+ * @author RODOLFO
+ *
+ */
 @Component
 @Entity
 @Table(name ="vehiculo")
@@ -20,44 +27,101 @@ public class Vehiculo implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
+	/*
+	 * --------------------------------- 
+	 * -------- Atributos --------------
+	 * ---------------------------------
+	 */
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO,generator="native")
 	@GenericGenerator(name="native",strategy="native")
+	/**
+	 * idVehiculo, representa el id del vehiculo
+	 */
 	@Column(name = "IDVEHICULO")
 	private long idVehiculo;
 	
+	/**
+	 * patente, representa el Nº de patente del vehiculo
+	 */
+	@NotBlank(message="Ingrese patente")
 	@Column(name = "PATENTE" , length = 100 , nullable = true)
 	private String patente;
 	
+	/**
+	 * color, color del vehiculo
+	 */
+	@NotBlank(message="Ingrese color del vehiculo")
 	@Column(name = "COLOR" , length = 100 , nullable = true)
 	private String color;
 	
+	/**
+	 * titular, representa el titular a cargo del vehiculo
+	 */
+	@NotBlank(message="Ingrese su nombre")
 	@Column(name = "TITULAR" , length = 100 , nullable = true)
 	private String titular;
 	
+	/**
+	 * marca, marca del vehiculo
+	 */
+	@NotBlank(message="Ingrese la marca")
 	@Column(name = "MARCA" , length = 100 , nullable = true)
 	private String marca;
 	
+	/**
+	 * modelo, modelo del vehiculo
+	 */
+	@NotBlank(message="Ingrese modelo del vehiculo")
 	@Column(name = "MODELO" , length = 100 , nullable = true)
 	private String modelo;
 	
+	/**
+	 * tipo, tipo de vehiculo
+	 */
+	@NotBlank(message="Ingrese el tipo de vehiculo")
 	@Column(name = "TIPO" , length = 100 , nullable = true)
 	private String tipo;
 	
+	/**
+	 * numeroChasis, nº de chasis del vehiculo
+	 */
+	@NotBlank(message="Ingrese Nº de Chasis")
 	@Column(name = "NUMEROCHASIS" , length = 100 , nullable = true)
 	private String numeroChasis;
 	
+	/**
+	 * numeroMotor, Nº de motor del vehiculo
+	 */
+	@NotBlank(message="Ingrese Nº del motor")
 	@Column(name = "NUMEROMOTOR" , length = 100 , nullable = true)
 	private String numeroMotor;
 
-	// -------------------------
-	// ----- CONSTRUCTORES -----
-	// -------------------------
+	/*
+	 * --------------------------------- 
+	 * -------- Constructores-----------
+	 * ---------------------------------
+	 */
+	/**
+	 * Constructor Por Defecto
+	 */
 	public Vehiculo() {
 		super();
 	}
 	
-
+	/**
+	 * Constructor Parametrizado
+	 * @param idVehiculo
+	 * @param patente
+	 * @param color
+	 * @param titular
+	 * @param marca
+	 * @param modelo
+	 * @param tipo
+	 * @param numeroChasis
+	 * @param numeroMotor
+	 */
 	public Vehiculo(long idVehiculo, String patente, String color, String titular, String marca, String modelo,
 			String tipo, String numeroChasis, String numeroMotor) {
 		super();
@@ -73,9 +137,11 @@ public class Vehiculo implements Serializable{
 	}
 
 
-	// -------------------------
-	// ----- METODOS ACCESORES -----
-	// -------------------------
+	/*
+	 * --------------------------------- 
+	 * -------- Metodos Accesores-------
+	 * ---------------------------------
+	 */
 	public long getIdVehiculo() {
 		return idVehiculo;
 	}
@@ -147,8 +213,21 @@ public class Vehiculo implements Serializable{
 	public void setNumeroMotor(String numeroMotor) {
 		this.numeroMotor = numeroMotor;
 	}
+	
+	/*
+	 * --------------------------------- 
+	 * -------- ToString --------------
+	 * ---------------------------------
+	 */
 
+	@Override
+	public String toString() {
+		return "Vehiculo [idVehiculo=" + idVehiculo + ", patente=" + patente + ", color=" + color + ", titular="
+				+ titular + ", marca=" + marca + ", modelo=" + modelo + ", tipo=" + tipo + ", numeroChasis="
+				+ numeroChasis + ", numeroMotor=" + numeroMotor + "]";
+	}
 
+	
 	
 
 	
