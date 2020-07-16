@@ -60,4 +60,10 @@ public class LocalidadServiceImp implements ILocalidadService {
 
 	}
 
+	@Override
+	public Localidad buscarNombreLocalidad(String nombre) throws Exception {
+		
+		return localidadImp.findByNombre(nombre).orElseThrow();
+	}
+
 }

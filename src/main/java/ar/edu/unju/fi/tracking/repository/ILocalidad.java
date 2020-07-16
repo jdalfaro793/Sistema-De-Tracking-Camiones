@@ -1,6 +1,7 @@
 package ar.edu.unju.fi.tracking.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -25,4 +26,6 @@ public interface ILocalidad extends JpaRepository<Localidad, Long>{
 	//Permite ordenar la tabla por atributo nombre Real
 		@Query("from Localidad e order by e.nombre")
 		public List<Localidad> obtenerLocalidades();
+		
+		public Optional<Localidad> findByNombre (String nombre);
 }

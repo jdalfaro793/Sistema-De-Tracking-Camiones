@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Error Internal Server</title>
+<title>Registro del Tripulante</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
 	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
@@ -11,37 +11,58 @@
 <link rel="stylesheet" href="css/estilos.css">
 </head>
 
-
-
 <!-- CUERPO DE LA VISTA -->
 <body style="background-image: url('img/patron.jpg');">
 
-	<button class="btn btn-secondary btn-flotante"
-		th:onclick="'javascript:back();'">
-		<i class="fas fa-reply"></i> &nbsp; Volver
-	</button>
-	<!-- SCRIPT PARA RETORNAR A LA PAGINA ANTERIOR -->
-	<script type="text/javascript">
-		function back() {
-			history.back();
-		}
-	</script>
-	<!-- CLASE CONTENEDORA DE CAJAS, MENSAJES th:text, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
+
+	<!--  ENLACE HACIA /nuevoLocalidad Y CLASS btn PARA BOTON DE TIPO PRIMARIO-->
+	<a th:href="@{/ingresarLocalidadYFecha}" class="btn btn-secondary">Volver</a>
+
+
+
 	<div
 		class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
+		
+		
+		
+		<div class="card mt-5">
 
 
-		<div >
-			<div>
-				<h4 th:text="${error}">Internal Server Error</h4>
+
+			<!-- Tabla de Tripulantes -->
+			<div th:if="${activarTripus==true}"
+				class="col-sm-12 text-center mt-1 mb-2">
+				<div class="table-responsive">
+					<table class="table table-hover m-0">
+						<thead class="bg-dark text-white">
+
+							<tr>
+							
+								<th>Documento</th>
+								<th>Apellido</th>
+								<th>Nombre</th>
+								<th>Nacionalidad</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="tripulante : ${tripulantes}">
+								<td th:text="${tripulante.documento}"></td>
+								<td th:text="${tripulante.apellido}"></td>
+								<td th:text="${tripulante.nombre}"></td>
+								<td th:text="${tripulante.nacionalidad}"></td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
 			</div>
-			
-			<h1>POR FAVOR, RETORNE A LA PAGINA ANTERIOR...</h1>
 
 		</div>
-
-
 	</div>
+
+
+
+
 
 
 	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
@@ -58,6 +79,7 @@
 		crossorigin="anonymous"></script>
 </body>
 
-
+<!-- INSERCION DE FOOTER -->
+<div th:insert="layout/footer :: footer"></div>
 
 </html>

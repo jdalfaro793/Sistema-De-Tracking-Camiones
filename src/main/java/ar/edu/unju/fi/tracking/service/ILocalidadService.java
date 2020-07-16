@@ -44,4 +44,6 @@ public interface ILocalidadService {
 	 */
 	public void eliminarLocalidad(Long id);
 
+	public Localidad buscarNombreLocalidad(String nombre) throws Exception;
+
 }

@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers(resources).permitAll().antMatchers("/", "/login", "/home").permitAll()
+		http.authorizeRequests().antMatchers(resources).permitAll().antMatchers("/", "/login").permitAll()
 				// SE DEFINEN LAS PAGINAS AUTORIZADAS SEGUN EL ROL DEL USUARIO
 
 				.antMatchers("/nuevoUsuario").hasAuthority("ADMIN")
@@ -65,6 +65,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers("/registros").hasAuthority("REGISTRADOR")
 				.antMatchers("/registrador").hasAuthority("REGISTRADOR")
 
+				.antMatchers("/ingresarLocalidadYFecha").hasAuthority("CONSULTOR")
+				.antMatchers("/buscarPorLocalidadYRangoFechaHora").hasAuthority("CONSULTOR")
+				.antMatchers("/mostrarTripulante/{id}").hasAuthority("CONSULTOR")
 				.antMatchers("/ingresarTripulante").hasAuthority("CONSULTOR")
 				.antMatchers("/ingresarPatente").hasAuthority("CONSULTOR")
 				.antMatchers("/consultor").hasAuthority("CONSULTOR")

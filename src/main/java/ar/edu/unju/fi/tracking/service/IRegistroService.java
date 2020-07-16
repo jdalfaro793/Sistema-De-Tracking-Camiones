@@ -1,9 +1,11 @@
 package ar.edu.unju.fi.tracking.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import java.util.Optional;
 
+import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.Registro;
 import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
@@ -65,4 +67,7 @@ public interface IRegistroService {
 	 * @return Lista de los registros donde se encontro coincidencias
 	 */
 	public List<Registro> buscarPorTripulanteOrdenFechaHora(Tripulante tripulante);
+
+	public List<Registro> buscarRegistrosRangoFechasYLocalidad(LocalDateTime fechaDesde, LocalDateTime fechaHasta,
+			Localidad localidad);
 }

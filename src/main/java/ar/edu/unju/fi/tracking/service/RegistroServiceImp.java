@@ -7,8 +7,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.Registro;
-
 import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.repository.IRegistro;
@@ -68,6 +68,15 @@ public class RegistroServiceImp implements IRegistroService {
 	}
 
 	// ---- CONSULTAS
+	
+	// Consulta 1
+	@Override
+	public List<Registro> buscarRegistrosRangoFechasYLocalidad(LocalDateTime fechaDesde, LocalDateTime fechaHasta,
+			Localidad localidad) {
+		// TODO Auto-generated method stub
+		return registroImp.findAllByFechaHoraBetweenAndLocalidadOrderByFechaHora(fechaDesde, fechaHasta, localidad);
+	}
+
 
 	// Consulta 2
 

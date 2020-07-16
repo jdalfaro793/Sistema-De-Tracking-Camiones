@@ -30,7 +30,7 @@ public class MainController {
 		 * @param model
 		 * @return
 		 */
-
+		@GetMapping({"/home"})
 		public String home(Model model) {
 			return "index";
 		}
