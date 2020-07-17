@@ -53,15 +53,19 @@
 					<td>
 						<!-- REFERENCIAS A RUTAS DE ACCESO PARA LOS CONTROLADORES DE EDITAR Y ELIMINAR -->
 						<a th:href="@{/editarT/}+${tripulante.idTripulante}"
-						class="btn btn-warning">Editar</a> <a
+						class="btn btn-warning" onclick="return confirm('Desea Editar este Tripulante?');">Editar</a> 
+						<a
 						th:href="@{/eliminarT/}+${tripulante.idTripulante}"
-						class="btn btn-danger">Eliminar</a>
+						class="btn btn-danger" onclick="return confirm('Desea Eliminar este Tripulante?');">Eliminar</a>
 					</td>
 				</tr>
 
 			</tbody>
 		</table>
+		
 	</div>
+	
+	
 
 	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

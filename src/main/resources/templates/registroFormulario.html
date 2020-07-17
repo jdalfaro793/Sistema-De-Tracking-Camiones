@@ -34,8 +34,9 @@
 			data-target="#modalBuscarTripulante">Buscar Tripulante</button>
 		<button type="button" class="btn btn-success" data-toggle="modal"
 			data-target="#modalAgregarTripulante">Agregar Tripulante</button>
-		<a class="btn btn-warning" th:href="@{'/limpiarTripulantes'}">Borrar Lista de Tripulantes</a>
-		
+		<a class="btn btn-warning" th:href="@{'/limpiarTripulantes'}">Borrar
+			Lista de Tripulantes</a>
+
 
 		<!-- LISTA DE TRIPULANTES  -->
 		<div class="card-body">
@@ -319,32 +320,85 @@
 							<div class="form-group">
 
 								<!-- INPUT PARA INGRESAR LOS VALORES A LOS CAMPOS,  th:field PARA ASIGNAR ESE VALOR EN LA VARIABLE ESPECIFICADA -->
-								<label for="patente" class="required control-label">PATENTE:
-								</label> <input class="form-control" id="patente"
+									
+									<!-- DATOS PARA LA PATENTE -->
+									<label for="patente" class="required control-label">PATENTE:
+									</label> <input class="form-control" id="patente"
 									th:field="${vehiculo.patente}" placeholder="Ingresar PATENTE"
-									required></input> <label for="apellido"
-									class="required control-label">COLOR: </label> <input
+									required></input>
+									
+									<!-- SECCION DE COLORES -->
+									 <label for="color"
+									class="required control-label">COLOR: </label>
+									<!-- PALETA DE COLORES -->
+									 <input type="color"
 									class="form-control" id="color" th:field="${vehiculo.color}"
-									placeholder="Ingresar COLOR" required></input> <label
-									for="documento" class="required control-label">TITULAR:
-								</label> <input class="form-control" id="titular"
+									required></input>
+									
+									<!-- INGRESE TITULAR -->
+									 <label
+									for="titular" class="required control-label">TITULAR:
+									</label> <input class="form-control" id="titular"
 									th:field="${vehiculo.titular}" placeholder="Ingresar TITULAR"
-									required></input> <label for="apellido"
-									class="required control-label">MARCA: </label> <input
-									class="form-control" id="marca" th:field="${vehiculo.marca}"
-									placeholder="Ingresar MARCA" required></input> <label
-									for="documento" class="required control-label">MODELO:
-								</label> <input class="form-control" id="modelo"
+									required></input> 
+									
+									
+									<!-- LISTA DE MARCAS DE VEHICULOS -->
+									
+									<label for="marca"
+									class="required control-label">MARCA: </label> 
+									<select id="tipo" class="custom-select" th:field="${vehiculo.marca}">
+  									<option value="Volkswagen">Volkswagen</option> 
+  									<option value="Ford">Ford</option> 
+  									<option value="Honda">Honda</option>
+  									<option value="Fiat">Fiat</option>
+  									<option value="Renault">Renault</option>
+  									<option value="Scania">Scania</option> 
+  									<option value="Mercedez Benz">Mercedez Benz</option> 									
+  									<option value="Toyota">Toyota</option>
+  									<option value="Chevrolet">Chevrolet</option> 
+  									<option value="Peugeot">Peugeot</option>
+  									<option value="Citroën">Citroën</option>
+  									<option value="OTRO">OTRO</option>
+									</select>
+									
+									<!-- MODELO DE VEHICULO -->
+									<label
+									for="modelo" class="required control-label">MODELO:
+									</label> <input class="form-control" id="modelo"
 									th:field="${vehiculo.modelo}" placeholder="Ingresar MODELO"
-									required></input> <label for="apellido"
-									class="required control-label">TIPO: </label> <input
-									class="form-control" id="tipo" th:field="${vehiculo.tipo}"
-									placeholder="Ingresar TIPO" required></input> <label
-									for="documento" class="required control-label">NUMERO
+									required></input>
+									
+									 <label for="tipo"
+									class="required control-label">TIPO: </label>
+										
+										<!-- LISTA DE TIPOS DE VEHICULOS -->
+									
+									<select id="tipo" class="custom-select" th:field="${vehiculo.tipo}">
+  									<option value="Rural">Rural</option> 
+  									<option value="Vehiculo">Vehiculo</option> 
+  									<option value="Camion">Camion</option>
+  									<option value="Camioneta">Camioneta</option>
+  									<option value="Motocicleta">Motocicleta</option>
+  									<option value="Vehiculo Familiar">Vehiculo Familiar</option> 
+  									<option value="Colectivo">Colectivo</option>
+  									<option value="Casa Rodante">Casa Rodante</option>
+  									<option value="Acoplado">Acoplado</option> 
+  									<option value="Semi Remolque">Semi Remolque</option>
+  									<option value="Indutrial">Industrial</option>
+  									<option value="OTRO">OTRO</option>
+									</select>
+									
+									<!-- NUMERO DE CHASIS -->
+									<label
+									for="numeroChasis" class="required control-label">NUMERO
 									DE CHASIS: </label> <input class="form-control" id="numeroChasis"
 									th:field="${vehiculo.numeroChasis}"
-									placeholder="Ingresar NUMERO DE CHASIS" required></input> <label
-									for="apellido" class="required control-label">NUMERO
+									placeholder="Ingresar NUMERO DE CHASIS" required></input> 
+									
+									<!-- NUMERO DE MOTOR -->
+									<label
+									for="numeroMotor" class="required control-label">NUMERO
 									MOTOR: </label> <input class="form-control" id="numeroMotor"
 									th:field="${vehiculo.numeroMotor}"
 									placeholder="Ingresar NUMERO MOTOR" required></input>
@@ -354,7 +408,7 @@
 							<button type="button" class="btn btn-secondary"
 								data-dismiss="modal">Close</button>
 							<input type="submit" class="btn btn-primary"
-								value="Agregar Tripulante">
+								value="Agregar Vehiculo">
 						</div>
 					</form>
 				</div>
@@ -374,11 +428,14 @@
 
 				<!-- SECCION DE LOCALIDAD -->
 				<div class="form-group">
-					<label>Elegir Localidad</label> <select id="localidad"
-						class="custom-select" th:field="${registro.localidad.idLocalidad}">
-						<option th:each="localidadList :${localidades}"
+					<label>Elegir Localidad</label> 
+					
+					<select id="localidad" class="custom-select" th:field="${registro.localidad.idLocalidad}">
+						<option 
+							th:each="localidadList :${localidades}"
 							th:value="${localidadList.idLocalidad}"
-							th:text="${localidadList.nombre}"></option>
+							th:text="${localidadList.nombre}">	
+						</option>
 					</select>
 				</div>
 

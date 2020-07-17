@@ -49,15 +49,17 @@
 
 					<td th:text="${registro.localidad.nombre}"></td>
 
-
+<!-- 
 					<td>
-						<!-- REFERENCIAS A RUTAS DE ACCESO PARA LOS CONTROLADORES DE EDITAR Y ELIMINAR -->
+						REFERENCIAS A RUTAS DE ACCESO PARA LOS CONTROLADORES DE EDITAR Y ELIMINAR
 						<a th:href="@{/editarR/}+${registro.id}" class="btn btn-warning">Editar</a>
 						<a th:href="@{/eliminarR/}+${registro.id}" class="btn btn-danger">Eliminar</a>
-					</td>
+					</td> -->
 				</tr>
 			</tbody>
 		</table>
+		<div class="alert-danger text-center" th:if="${formTripulanteErrorMessage}"
+			th:text="${formTripulanteErrorMessage}">Name Error</div>
 
 	</div>
 
