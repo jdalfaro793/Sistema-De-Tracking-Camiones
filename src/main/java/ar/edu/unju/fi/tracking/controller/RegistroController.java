@@ -17,13 +17,17 @@ import ar.edu.unju.fi.tracking.model.Localidad;
 import ar.edu.unju.fi.tracking.model.Registro;
 import ar.edu.unju.fi.tracking.model.Tripulante;
 import ar.edu.unju.fi.tracking.model.Vehiculo;
+import ar.edu.unju.fi.tracking.repository.ITripulante;
 import ar.edu.unju.fi.tracking.service.ILocalidadService;
 import ar.edu.unju.fi.tracking.service.IRegistroService;
 import ar.edu.unju.fi.tracking.service.ITripulanteService;
 import ar.edu.unju.fi.tracking.service.IVehiculoService;
+
 /**
- * RegistroController, en este controlador se inyectan otros objetos
- * que se necesitan para levantar un registro completo, vehiculo, localidad y tripulantes
+ * RegistroController, en este controlador se inyectan otros objetos que se
+ * necesitan para levantar un registro completo, vehiculo, localidad y
+ * tripulantes
+ * 
  * @author RODOLFO
  *
  */
@@ -49,49 +53,66 @@ public class RegistroController {
 	Tripulante tripulante;
 	@Autowired
 	ITripulanteService tripulanteService;
-
+	ITripulante tripu;
 	Vehiculo vehiculoEncontrado;
 	Vehiculo vehiculoAgregado;
-	// ======= FIN de Inyecciones==================================================================
+	// ======= FIN de
+	// Inyecciones==================================================================
 
 	/**
 	 * Peticion para mostrar los registros
+	 * 
 	 * @param model
 	 * @return
 	 */
 	@RequestMapping("/registros")
 	public String main(Model model) {
-		//se crea un List para recuperar los registros de la BD
+		// se crea un List para recuperar los registros de la BD
 		List<Registro> registros = registroService.obtenerRegistros();
 		// se muestra el list con los registros encontrados
 		model.addAttribute("registros", registros);
 		return "registroListado";
 	}
+
 	/**
 	 * Peticion para poder dar de alta un registro completo
+	 * 
 	 * @param model
 	 * @return al formulario registro para ver dicha alta
 	 */
 	@GetMapping("/nuevoRegistro")
 	public String agregar(Model model) {
 		model.addAttribute("registro", registro);
-		//se recuperan las localidades
+		// se recuperan las localidades
 		List<Localidad> localidades = localidadService.obtenerLocalidades();
-		//se muestra en el modal las localidades encontradas
+		// se muestra en el modal las localidades encontradas
 		model.addAttribute("localidades", localidades);
-		
-		//se muestra el modal de tripulantes y su busqueda o agregar
+
+		// se muestra el modal de tripulantes y su busqueda o agregar
 		model.addAttribute("tripulantes", tripulanteService.buscarTodosTripulantes());
 		model.addAttribute("tripulanteDelForm", tripulante);
-		//se muestra el modal de vehiculo y su busqueda o agregar
+		// se muestra el modal de vehiculo y su busqueda o agregar
 		model.addAttribute("vehiculo", vehiculo);
 		return "registroFormulario";
+	}
+
+	/**
+	 * METODO PARA LIMPIAR LA LISTA AUXILIAR DE LOS TRIPULANTES Y ASI RETORNAR UNA
+	 * LISTA LIMPIA PARA REGISTRAR NUEVAMENTE TRIPULANTES
+	 * 
+	 */
+	@GetMapping("/limpiarTripulantes")
+	public String agregar2(Model model) {
+		// se borran los tripulantes para para no cargarlos nuevamente
+		tripulanteService.borrarTodosTripulantes();
+		return agregar(model);
 	}
 
 	// ========================================================================================
 	// TRIPULANTES
 	/**
 	 * Peticion para enviar datos a la vista, agregar un tripulante nuevo
+	 * 
 	 * @param tripulante
 	 * @param model
 	 * @return al model agregar que lleva al formulario
@@ -100,17 +121,27 @@ public class RegistroController {
 	@PostMapping("/agregarTripulante")
 	public String crearTripulante(@ModelAttribute("tripulanteDelForm") Tripulante tripulante, Model model)
 			throws Exception {
+
 		try {
-			//Se guarda el tripulante nuevo
+			// Busqueda del tripulante por DOCUMENTO, en la base de datos
+			Tripulante tripulanteEncontrado = tripulanteService.buscarTripulante(tripulante.getDocumento());
+			// DE NO ENCONTRARLO, AGREGA EL TRIPULANTE A LA LISTA AUXILIAR DONDE
+			// POSTERIORMENTE LO MOSTRARA POR EL HTML
+			tripulanteService.guardarTripulanteEncontrado(tripulanteEncontrado);
+
+		} catch (Exception e) {
+			// DE ENCONTRARLO LO TRAE DE LA BASE DE DATOS PARA ASIGNARLO AL REGISTRO Y
+			// GUARDARLO DE NUEVO
 			tripulanteService.guardarTripulante(tripulante);
-		} catch (Exception f) {
-			// en caso de no poder guardar se muestra un mensaje de error
-			model.addAttribute("formTripulanteErrorMessage", f.getMessage());
+
 		}
 		return agregar(model);
+
 	}
+
 	/**
 	 * Peticion para la busqueda de tripulantes, para evitar agregar uno mismo
+	 * 
 	 * @param tripulante
 	 * @param model
 	 * @return al formulario del registro
@@ -120,17 +151,18 @@ public class RegistroController {
 	public String buscarTripulante(@ModelAttribute("tripulanteDelForm") Tripulante tripulante, Model model)
 			throws Exception {
 		try {
-			//se realiza la busqueda del tripulante 
+			// se realiza la busqueda del tripulante
+
 			Tripulante tripulanteEncontrado = tripulanteService.buscarTripulante(tripulante.getDocumento());
 			try {
-				//sino lo encuentra permite agregarlo
+				// sino lo encuentra permite agregarlo
 				tripulanteService.guardarTripulanteEncontrado(tripulanteEncontrado);
 			} catch (Exception e) {
-				//en caso se no poder agregarlo, muestra un mensaje error
+				// en caso se no poder agregarlo, muestra un mensaje error
 				model.addAttribute("formTripulanteErrorMessage", e.getMessage());
 			}
 		} catch (Exception e) {
-			//en caso de no encontrarlo muestra un mensaje de error
+			// en caso de no encontrarlo muestra un mensaje de error
 			model.addAttribute("formTripulanteErrorMessage", e.getMessage());
 		}
 		return agregar(model);
@@ -141,6 +173,7 @@ public class RegistroController {
 	// VEHICULO
 	/**
 	 * Peticion para enviar los datos de una busqueda de vehiculo
+	 * 
 	 * @param vehiculo
 	 * @param model
 	 * @return agregar(model)
@@ -149,21 +182,23 @@ public class RegistroController {
 	@PostMapping("/buscarVehiculo")
 	public String buscarVehiculo(@ModelAttribute("vehiculo") Vehiculo vehiculo, Model model) throws Exception {
 		try {
-			//busqueda del vehiculo
+			// busqueda del vehiculo
 			vehiculoEncontrado = vehiculoService.buscarVehiculo(vehiculo.getPatente());
-			//tabla con los datos del vehiculo encontrado
+			// tabla con los datos del vehiculo encontrado
 			model.addAttribute("vehiculoEncontrado", vehiculoEncontrado);
-			//comprobando si por consola lo encuentra
+			// comprobando si por consola lo encuentra
 			System.out.println("///: " + vehiculoEncontrado);
 		} catch (Exception e) {
-			//en caso de no encontrarlo muestra un mensaje error
+			// en caso de no encontrarlo muestra un mensaje error
 			model.addAttribute("formVehiculoErrorMessage", e.getMessage());
 		}
 		return agregar(model);
 
 	}
+
 	/**
 	 * Peticion para agregar un nuevo vehiculo en caso de que no existiera
+	 * 
 	 * @param vehiculo
 	 * @param model
 	 * @return
@@ -172,12 +207,12 @@ public class RegistroController {
 	@PostMapping("/agregarVehiculo")
 	public String crearVehiculo(@ModelAttribute("vehiculo") Vehiculo vehiculo, Model model) throws Exception {
 		try {
-			//guarda un vehiculo nuevo
+			// guarda un vehiculo nuevo
 			vehiculoService.guardarVehiculo(vehiculo);
 			vehiculoAgregado = vehiculo;
-			//muestra el vehiculo nuevo en la vista
+			// muestra el vehiculo nuevo en la vista
 			model.addAttribute("vehiculoGuardado", vehiculo);
-			
+
 		} catch (Exception f) {
 			// en caso de no poder agregarlo, muestra un mensaje de error
 			model.addAttribute("vehiculoGuardado", f.getMessage());
@@ -190,37 +225,39 @@ public class RegistroController {
 	// REGISTRO
 	/**
 	 * Peticion para guardar el registro con los datos previamente cargados
+	 * 
 	 * @param registro
 	 * @param model
 	 * @return listado de registros
 	 */
 	@PostMapping("/saveRegistro")
 	public String guardar(@ModelAttribute("registro") Registro registro, Model model) {
-		//se verifica si se encontro el vehiculo buscado sino agrega un nuevo
+		// se verifica si se encontro el vehiculo buscado sino agrega un nuevo
 		if (vehiculoEncontrado != null) {
 			registro.setVehiculo(vehiculoEncontrado);
 		} else {
 
-			if (vehiculoAgregado!= null) {
+			if (vehiculoAgregado != null) {
 				registro.setVehiculo(vehiculoAgregado);
 			}
 		}
-		//se guardan los tripulantes agregados en el registro
+		// se guardan los tripulantes agregados en el registro
 		registro.setTripulante(tripulanteService.buscarTodosTripulantes());
-		//se guarda el registro sino muestra un cartel de error
+		// se guarda el registro sino muestra un cartel de error
 		try {
 			registroService.guardarRegistro(registro);
 
 		} catch (Exception e) {
 			model.addAttribute("formTripulanteErrorMessage", e.getMessage());
 		}
-		//se borran los tripulantes para para no cargarlos nuevamente
+		// se borran los tripulantes para para no cargarlos nuevamente
 		tripulanteService.borrarTodosTripulantes();
 		return "redirect:/registros";
 	}
-	
+
 	/**
 	 * Peticion para un boton que redireccione al listado de registros
+	 * 
 	 * @param model
 	 * @return
 	 */
@@ -228,8 +265,9 @@ public class RegistroController {
 	public String cancelarRegistro(ModelMap model) {
 		return "redirect:/registros";
 	}
-	
-	//Botones que no se piden pero que se podria incluir en caso de un mal tipeo o en caso de un registro mal echo
+
+	// Botones que no se piden pero que se podria incluir en caso de un mal tipeo o
+	// en caso de un registro mal echo
 	// editar registro
 	@GetMapping("/editarR/{id}")
 	public String editar(@PathVariable Long id, Model model) {

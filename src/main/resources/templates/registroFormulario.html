@@ -15,8 +15,8 @@
 	<h1>Alta Registro</h1>
 	<!-- CAJA CON CLASE CONTENEDORA DE FORMULARIOS, LABELS, INPUTS-->
 	<div class="container">
-	
-			<!--  ENLACE HACIA /registrador -->
+
+		<!--  ENLACE HACIA /registrador -->
 		<form action="/registrador">
 			<input type="submit" class="confondo" value="ATRAS" />
 		</form>
@@ -34,8 +34,8 @@
 			data-target="#modalBuscarTripulante">Buscar Tripulante</button>
 		<button type="button" class="btn btn-success" data-toggle="modal"
 			data-target="#modalAgregarTripulante">Agregar Tripulante</button>
-
-
+		<a class="btn btn-warning" th:href="@{'/limpiarTripulantes'}">Borrar Lista de Tripulantes</a>
+		
 
 		<!-- LISTA DE TRIPULANTES  -->
 		<div class="card-body">
@@ -396,7 +396,7 @@
 				<!-- GUARDAR Ó CANCELAR REGISTRO -->
 				<div class="card-footer">
 
-					<a class="btn btn-success" th:href="@{'/cancelarRegistro'}">Cancelar</a>
+					<a class="btn btn-danger" th:href="@{'/cancelarRegistro'}">Cancelar</a>
 					<input type="submit" value="Guardar" class="btn btn-success">
 				</div>
 			</div>

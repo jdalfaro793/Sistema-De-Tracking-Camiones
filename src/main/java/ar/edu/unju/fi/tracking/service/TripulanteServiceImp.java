@@ -68,6 +68,9 @@ public class TripulanteServiceImp implements ITripulanteService {
 
 	}
 
+	
+
+	
 	/**
 	 * Metodo para guardar un objeto de tipo Tripulante en el atributo auxiliar de
 	 * la clase

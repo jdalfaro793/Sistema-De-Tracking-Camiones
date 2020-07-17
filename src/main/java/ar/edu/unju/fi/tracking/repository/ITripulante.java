@@ -32,10 +32,12 @@ public interface ITripulante extends JpaRepository<Tripulante, Long> {
 	// prueba
 	public Optional<Tripulante> findByDocumento(String documento);
 	
+//	public Tripulante<Tripulante> findByDocumento(String documento);
+	
 	/**
 	 * Metodo que permite buscar un tripulante por su documento
 	 * @param documento
 	 * @return un tripulante 
 	 */
-	Tripulante findAllByDocumento(String documento);
+	public Tripulante findAllByDocumento(String documento);
 }
