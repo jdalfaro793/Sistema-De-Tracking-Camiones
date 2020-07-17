@@ -62,9 +62,10 @@
 					<td>
 						<!-- REFERENCIAS A RUTAS DE ACCESO PARA LOS CONTROLADORES DE EDITAR Y ELIMINAR -->
 						<a th:href="@{/editarV/}+${vehiculo.idVehiculo}"
-						class="btn btn-warning">Editar</a> <a
+						class="btn btn-warning" onclick="return confirm('Desea Editar este Vehiculo?');">Editar</a> 
+						<a
 						th:href="@{/eliminarV/}+${vehiculo.idVehiculo}"
-						class="btn btn-danger">Eliminar</a>
+						class="btn btn-danger" onclick="return confirm('Desea Eliminar este Vehiculo?');">Eliminar</a>
 					</td>
 				</tr>
 			</tbody>

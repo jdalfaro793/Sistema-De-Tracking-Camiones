@@ -15,12 +15,13 @@
 <body>
 
 	<!-- CLASE CONTENEDORA DE FORMULARIOS, LABELS, INPUTS, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
-	<div class="container-fluid">
+	<div class="container-fluid col-sm-5 align-self-center" style="margin-top: 100px">
 
 		<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DEL USUARIO QUE SE LOGEARA Y MANDARLAS AL SERVIDOR  -->
 		<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /login Y th:object DECLARA EL OBJETO MODELO A USAR -->
 		<form class="form" th:action="@{/login}" th:object="${usuarioDelForm}"
 			method="post">
+			
 			<div class="form-group">
 				<div class="form-group">
 					<h3 style="font-weight: bolder;">Iniciar sesión</h3>

@@ -16,10 +16,10 @@
 <!-- CUERPO DE LA VISTA -->
 <body style="background-image: url('img/patron.jpg');">
 
-	<button class="btn btn-secondary btn-flotante"
+	<!-- <button class="btn btn-secondary btn-flotante btn-lg"
 		th:onclick="'javascript:back();'">
 		<i class="fas fa-reply"></i> &nbsp; Volver
-	</button>
+	</button> -->
 	<!-- SCRIPT PARA RETORNAR A LA PAGINA ANTERIOR -->
 	<script type="text/javascript">
 		function back() {
@@ -29,20 +29,25 @@
 	<!-- CLASE CONTENEDORA DE CAJAS, MENSAJES th:text, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
 	<div
 		class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
-
-
 		<div >
 			<div>
 				<h4 th:text="${error}">Internal Server Error</h4>
 			</div>
 			
 			<h1>POR FAVOR, RETORNE A LA PAGINA ANTERIOR...</h1>
-
 		</div>
-
-
 	</div>
-
+	<!-- BOTON PARA RETORNAR A LA PAGINA ANTERIOR -->	
+	<div class="container" style="margin-top: 30px">
+		<div class="form-row text-center">
+			<div class="col-12">
+				<button type="button" class="btn btn-danger btn-lg"
+					th:onclick="'javascript:back();'">
+					<i class="fas fa-reply"></i> &nbsp; Atras
+				</button>
+			</div>
+		</div>
+	</div>
 
 	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
