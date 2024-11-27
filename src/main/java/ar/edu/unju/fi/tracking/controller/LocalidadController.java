@@ -19,7 +19,7 @@ import ar.edu.unju.fi.tracking.service.ILocalidadService;
 /**
  * LocalidadController, va a manejar todas las peticiones para poder tener un ABM
  * sobre las localidades disponibles para el registro
- * @author RODOLFO
+ * 
  *
  */
 @Controller

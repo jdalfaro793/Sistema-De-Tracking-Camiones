@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unju.fi.tracking.model.Tripulante;
 /**
  * Interface Tripulante, permite acceder a los tripulantes almacenados en la BD
- * @author RODOLFO
  *
  */
 @Repository

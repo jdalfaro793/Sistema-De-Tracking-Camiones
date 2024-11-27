@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Main Controller, maneja las peticiones para el login
  * deacuerdo al rol de cada usuario se le presentara una vista diferente
- * @author RODOLFO
+ * 
  *
  */
 @Controller

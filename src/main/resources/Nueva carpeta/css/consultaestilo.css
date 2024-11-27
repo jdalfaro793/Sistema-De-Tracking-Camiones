@@ -1,0 +1,18 @@
+@charset "ISO-8859-1";
+*{
+	
+	font-family: 'Roboto Condensed', sans-serif;
+	
+}
+
+button {
+	
+	width: 50%;
+	margin-left: 25%;
+	margin-right: 25%;
+	
+}
+
+body {
+	
+}

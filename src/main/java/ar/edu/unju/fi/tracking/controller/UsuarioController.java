@@ -18,7 +18,6 @@ import ar.edu.unju.fi.tracking.model.Usuario;
 import ar.edu.unju.fi.tracking.service.IUsuarioService;
 /**
  * UsuarioController, permite administrar las peticiones para el ABM de usuarios y sus roles
- * @author RODOLFO
  *
  */
 @Controller

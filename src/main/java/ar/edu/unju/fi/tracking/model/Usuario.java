@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
 /**
  * Clase Usuario, representa los atributos id, nombreUsuario, password, nombre, apellido, tipoUsuario
  * permite crear un usuario con su respectivo rol
- * @author RODOLFO 
  *
  */
 @Component

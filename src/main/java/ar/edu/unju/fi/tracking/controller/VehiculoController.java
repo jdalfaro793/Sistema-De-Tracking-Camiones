@@ -17,7 +17,6 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
 import ar.edu.unju.fi.tracking.service.IVehiculoService;
 /**
  * Vehiculo Controller, permite controlar las peticiones para el ABM de vehiculo
- * @author RODOLFO 
  *
  */
 @Controller

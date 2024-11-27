@@ -17,7 +17,6 @@ import ar.edu.unju.fi.tracking.service.ITripulanteService;
 /**
  * TripulanteController, nos permite administrar las peticiones que necesitaremos 
  * para hacer el ABM de la clase Tripulantes
- * @author RODOLFO DEL JUICIO
  *
  */
 @Controller

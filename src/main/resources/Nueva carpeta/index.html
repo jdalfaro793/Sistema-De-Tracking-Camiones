@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<title>Home</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous">
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<!-- INSERCION DE HEADER -->
+<div th:insert="layout/header :: header"></div>
+
+
+<!-- CUERPO DE LA VISTA -->
+<body style="background-image: url('img/patron.jpg');">
+
+	<button class="btn btn-secondary btn-flotante"
+		th:onclick="'javascript:back();'">
+		<i class="fas fa-reply"></i> &nbsp; Volver
+	</button>
+
+	<script type="text/javascript">
+		function back() {
+			history.back();
+		}
+	</script>
+	<!-- CLASE CONTENEDORA DE FORMULARIOS, IMAGENES - INPUTS, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
+	<div
+		class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
+
+
+		<div class="row">
+			<div>
+				<h2>Noticias del dia</h2>
+
+
+				<img src="img/imagen1.jpg" width="200px" height="165px" />
+				<p class="cardtext">
+					15/07/20<br>
+				</p>
+				<h4>INFORME:</h4>
+				119 CASOS NUEVOS<br> EN LA PROVINCIA
+
+			</div>
+
+			
+		</div>
+
+
+	</div>
+
+
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+		integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+		integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+		crossorigin="anonymous"></script>
+</body>
+
+<!-- INSERCION DE FOOTER -->
+<div th:insert="layout/footer :: footer"></div>
+
+</html>

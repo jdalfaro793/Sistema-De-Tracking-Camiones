@@ -178,7 +178,7 @@ public class Consulta1Controller {
 		Optional<Registro> registroEnc = registroTrackingServiceImp.obtenerUnRegistro(id);
 		
 		//verificar que se haya encontrado el registro
-		if(registroEnc.isEmpty()) {
+		if(!registroEnc.isPresent()) {
 			
 			model.addAttribute("activo", true);
 			model.addAttribute("noEncontrado", "No se encontraron los registros...");

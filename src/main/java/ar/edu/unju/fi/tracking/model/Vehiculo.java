@@ -16,7 +16,6 @@ import org.springframework.stereotype.Component;
  * Clase Vehiculo, representa los atributos idvehiculo, patente, color, titular, marca, modelo, tipo, 
  * numero chasis, numero motor
  * Nos va a permitir captar los datos de un vehiculo para poder agregarlo a un registro
- * @author RODOLFO
  *
  */
 @Component

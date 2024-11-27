@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>Registro por Patente</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/css/tempusdominus-bootstrap-4.min.css" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+	integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+	crossorigin="anonymous" />
+
+</head>
+<!-- CUERPO DE LA VISTA -->
+<body class="body-container-consulta m-0">
+
+	<!-- CLASE CONTENEDORA DE FORMULARIOS, TABLAS, INPUTS, MODIFICADOR FLUID: PARA ADAPTARSE AL TAMAÑO DEL NAVEGADOR-->
+
+	<div
+		class="container-fluid mx-0 mb-5 mt-3 pt-4 pb-4 px-0 d-flex justify-content-center align-items-center">
+		<!-- CAJA CON CLASE INDICANDO MARGEN SUPERIOR DE 5 -->
+		<div class="card mt-5">
+			<!-- CAJA CON CLASE "CABECERA DE TARJETA"  -->
+			<div class="card-header container p-4">
+				<div class="row m-0">
+					<h2 class="card-title col-sm-12 text-center text-dark m-0">
+						Listado de Vehiculos registrados por Localidad, en un rango de
+						fecha/hora</h2>
+				</div>
+			</div>
+			<!-- CLASE CON CUERPO DE LA TARJETA, CONTENEDORA DE LA LISTA, FORMS, BOTONES -->
+			<div class="card-body container">
+				<div class="row">
+
+					<div class=" col-sm-12">
+						<div class="container my-4">
+
+
+							<!-- ELEMENTO FORM PARA RECOPILAR LAS ENTRADAS DEL USUARIO CONSULTOR Y MANDARLAS AL SERVIDOR  -->
+							<!-- LA ACCION th:action REDIRIGE EL FORMULARIO A POST AL MAPEO /BuscarTripulanteDNI Y th:object DECLARA EL OBJETO MODELO A USAR -->
+
+							<form class="row" th:object="${consulta}"
+								th:action="@{/buscarPorLocalidadYRangoFechaHora}" method="post"
+								role="form">
+
+								<!-- Selector de fecha Inicio -->
+								<div class="col-sm-6 container mt-4">
+									<div class="row d-flex align-items-center">
+										<label class="col-sm-3 text-center m-0" for="desdeFech">Desde:</label>
+										<input class="form-control col-sm-9" type="datetime-local"
+											id="desdeFech" th:field="*{fechaDesde}" required>
+									</div>
+								</div>
+
+								<!-- Selector de fecha Final -->
+								<div class="col-sm-6 container mt-4">
+									<div class="row d-flex align-items-center">
+										<label for="hastaFech" class="col-sm-3 text-center m-0">Hasta:</label>
+										<input class="form-control col-sm-9" type="datetime-local"
+											id="hastaFech" th:field="*{fechaHasta}" required>
+									</div>
+								</div>
+
+								<!-- Seleccion de localidades -->
+								<div class="col-sm-6 container mt-3">
+									<div class="row">
+										<select class="custom-select col-sm-12" id=""
+											th:field="${consulta.localidad.nombre}" required>
+											<option selected disabled value="">Seleccione una
+												localidad</option>
+											<option th:each="localidad : ${localidades}"
+												th:text="${localidad.nombre}" th:value="${localidad.nombre}"></option>
+										</select>
+
+									</div>
+								</div>
+
+								<!-- Boton de busqueda -->
+								<div class="col-sm-6 container mt-3">
+									<div class="row d-flex justify-content-center">
+										<button type="submit" class="btn btn-success col-sm-4">BUSCAR</button>
+									</div>
+								</div>
+
+							</form>
+
+						</div>
+					</div>
+
+
+
+					<!-- mensaje de error de ingreso de fechas -->
+					<div th:if="${mensajeErr==true}"
+						class="col-sm-12 mt-4 h5 font-weight-lighter">
+						<div class="alert alert-danger text-center"
+							th:text="${errorFecha}"></div>
+					</div>
+
+					<!-- Mensaje sin registros -->
+					<div th:if="${activarSinRegistro==true}"
+						class="col-sm-12 text-center h5 font-weight-lighter">
+						<!-- Mensaje de error -->
+						<div class="alert alert-danger" th:text="${registroVacio}"></div>
+
+					</div>
+
+					<!-- Tabla de registros encontrados -->
+					<div th:if="${activarRegLocFech==true}"
+						class="col-sm-12 text-center mt-2">
+						<div class="table-responsive">
+							<table class="table table-hover m-auto">
+								<thead class="bg-dark text-white">
+									<tr>
+										<th rowspan="2">ID</th>
+										<th colspan="8">Vehiculo</th>
+										<th rowspan="2">Localidad</th>
+										<th colspan="3">Registro</th>
+									</tr>
+									<tr>
+										<th>Tipo</th>
+										<th>N° Patente</th>
+										<th>N° Chasis</th>
+										<th>N° Motor</th>
+										<th>Marca</th>
+										<th>Modelo</th>
+										<th>Color</th>
+										<th>Titular</th>
+										<th>Fecha-Hora</th>
+										<th>Detalles</th>
+
+										<th>Ver tripulante</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="registroLocFech : ${registrosLocalidadFechas}">
+										<td th:text="${registroLocFech.id}"></td>
+										<td th:text="${registroLocFech.vehiculo.tipo}"></td>
+										<td th:text="${registroLocFech.vehiculo.patente}"></td>
+										<td th:text="${registroLocFech.vehiculo.numeroChasis}"></td>
+										<td th:text="${registroLocFech.vehiculo.numeroMotor}"></td>
+										<td th:text="${registroLocFech.vehiculo.marca}"></td>
+										<td th:text="${registroLocFech.vehiculo.modelo}"></td>
+										<td th:text="${registroLocFech.vehiculo.color}"></td>
+										<td th:text="${registroLocFech.vehiculo.titular}"></td>
+										<td th:text="${registroLocFech.localidad.nombre}"></td>
+										<td th:text="${registroLocFech.fechaHora}"></td>
+										<td th:text="${registroLocFech.detalleLugarRegistro}"></td>
+										<td><a class="btn btn-outline-info"
+											th:href="@{'/mostrarTripulante/'+${registroLocFech.id}}">
+												<i class="far fa-eye"></i>
+										</a></td>
+									</tr>
+								</tbody>
+							</table>
+
+
+
+
+
+							<!-- Modal -->
+							<div class="modal fade" id="verTripulantes" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalLabel"
+								aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header text-center">
+											<h5 class="modal-title" id="exampleModalLabel">Tripulantes</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body"></div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+
+
+
+
+
+
+
+
+
+	<form action="/consultor">
+
+		<input type="submit" class="confondo" value="VOLVER" />
+	</form>
+
+
+				</div>
+
+
+
+
+
+
+			</div>
+
+
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+	<!-- LINEAS DE SCRIPTS NECESARIOS PARA LA EJECUCION DE LA PAGINA -->
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"
+		type="text/javascript" src="webjars/jquery/3.5.1/jquery.min.js"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/popper.min.js}"
+		type="text/javascript" src="webjars/popper.js/1.16.0/popper.min.js"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.0/js/bootstrap.min.js}"
+		type="text/javascript"
+		src="webjars/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha14/js/tempusdominus-bootstrap-4.min.js"></script>
+	<script type="text/javascript" src="/path/to/jquery.js"></script>
+	<script type="text/javascript" src="/path/to/moment.js"></script>
+	<script type="text/javascript"
+		src="/path/to/tempusdominus-bootstrap-4.min.js"></script>
+</body>
+</html>

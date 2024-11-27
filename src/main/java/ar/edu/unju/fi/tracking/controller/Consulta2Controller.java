@@ -21,7 +21,7 @@ import ar.edu.unju.fi.tracking.util.Consulta2;
 /**
  * Esta clase permite manejar todas las peticiones para realizar la consulta numero 2
  * que pide listar el recorrido de tripulantes por fecha
- * @author RODOLFO 
+ * 
  *
  */
 @Controller

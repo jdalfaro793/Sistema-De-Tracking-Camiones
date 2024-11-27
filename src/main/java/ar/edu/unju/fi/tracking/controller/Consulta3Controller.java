@@ -22,7 +22,7 @@ import ar.edu.unju.fi.tracking.util.Consulta3;
 /**
  * Clase Consulta3Controller, permite manejar todas las peticiones
  * que necesitaremos para realizar la Consulta3 planteada en el TP
- * @author RODOLFO
+ * 
  *
  */
 @Controller

@@ -19,8 +19,6 @@ import org.springframework.stereotype.Component;
  * de registros nos permitira crear objetos de tipo localidad para poder
  * almacenar el recorrido que hay en cada registro
  * 
- * @author RODOLFO
- *
  */
 @Component
 @Entity

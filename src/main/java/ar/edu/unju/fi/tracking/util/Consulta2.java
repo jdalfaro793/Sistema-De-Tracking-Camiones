@@ -5,7 +5,6 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 /**
  * Clase auxiliar para poder realizar la consulta 2 del TP
- * @author RODOLFO
  *
  */
 @Component

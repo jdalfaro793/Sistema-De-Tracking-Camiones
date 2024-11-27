@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import ar.edu.unju.fi.tracking.model.Usuario;
 /**
  * Interface Usuario que permite acceder a los usuarios guardados
- * @author RODOLFO
  *
  */
 @Repository

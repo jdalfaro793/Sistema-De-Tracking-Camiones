@@ -15,7 +15,6 @@ import org.springframework.stereotype.Component;
 /**
  * Clase Tripulante, representa los atributos id, documento, apellido, nombre, nacionalidad
  * nos permite crear un objeto de tipo tripulante que representara las personas que pasan por el registro
- * @author RODOLFO 
  *
  */
 @Component

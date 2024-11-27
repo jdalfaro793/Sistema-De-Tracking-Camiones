@@ -24,7 +24,6 @@ import org.springframework.stereotype.Component;
 /**
  * Clase Registro, representa los atributos ID, FechaHora, Vehiculo, Tripulante, Localidad, Detalle Registro
  * nos va a permitir poder registrar al vehiculo con cada uno de sus tripulantes, su recorrido, su fecha y hora
- * @author RODOLFO
  */
 //Component marca a la clase como un bean de Spring
 @Entity

@@ -16,8 +16,6 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
  * Interface Registro, permite acceder a los datos de los registros
  * guardados en la BD
  * 
- * @author RODOLFO
- *
  */
 @Repository
 public interface IRegistro extends JpaRepository<Registro, Long>{

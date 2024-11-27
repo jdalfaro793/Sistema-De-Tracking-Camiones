@@ -5,7 +5,6 @@ import java.io.Serializable;
 import org.springframework.stereotype.Component;
 /**
  * Clase auxiliar creada para poder realizar la consulta 3
- * @author RODOLFO
  *
  */
 @Component

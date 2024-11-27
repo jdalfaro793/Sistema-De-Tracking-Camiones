@@ -28,7 +28,7 @@ import ar.edu.unju.fi.tracking.service.IVehiculoService;
  * necesitan para levantar un registro completo, vehiculo, localidad y
  * tripulantes
  * 
- * @author RODOLFO
+ * 
  *
  */
 @Controller

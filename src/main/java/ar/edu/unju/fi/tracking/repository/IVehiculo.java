@@ -10,7 +10,6 @@ import ar.edu.unju.fi.tracking.model.Vehiculo;
 
 /**
  * Interface Vehiculo nos permite acceder a los vehiculos guardados en la BD
- * @author RODOLFO 
  *
  */
 @Repository

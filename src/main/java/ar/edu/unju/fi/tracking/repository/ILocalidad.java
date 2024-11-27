@@ -12,7 +12,6 @@ import ar.edu.unju.fi.tracking.model.Localidad;
 /**
  * Interface que nos va a permitir interactuar con la BD
  * y acceder a todas las localidades almacenadas
- * @author RODOLFO
  *
  */
 

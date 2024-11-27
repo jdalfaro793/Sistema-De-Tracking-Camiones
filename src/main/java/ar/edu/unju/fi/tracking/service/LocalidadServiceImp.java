@@ -62,8 +62,8 @@ public class LocalidadServiceImp implements ILocalidadService {
 
 	@Override
 	public Localidad buscarNombreLocalidad(String nombre) throws Exception {
-		
-		return localidadImp.findByNombre(nombre).orElseThrow();
+	    return localidadImp.findByNombre(nombre)
+	            .orElseThrow(() -> new Exception("No se encontró la localidad con nombre: " + nombre));
 	}
 
 }
